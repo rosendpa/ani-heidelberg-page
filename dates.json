@@ -5,30 +5,22 @@
     "type": "A"
   },
   {
-    "day": 8,
-    "mon": 12,
-    "year": 2021,
-    "title": "Hybridsitzung",
+    "date": "2021-12-8T19:30+01:00",
+    "titl": "Hybridsitzung",
     "type": "A"
   },
   {
-    "day": 15,
-    "mon": 12,
-    "year": 2021,
-    "title": "Onlinesitzung",
+    "date": "2021-12-15T19:30+01:00",
+    "titl": "Onlinesitzung",
     "type": "B"
   },
   {
-    "day": 22,
-    "mon": 12,
-    "year": 2021,
-    "title": "Onlinesitzung",
+    "date": "2021-12-22T19:30+01:00",
+    "titl": "Onlinesitzung",
     "type": "B"
   },
   {
-    "day": 20,
-    "mon": 12,
-    "year": 2021,
+    "date": "2021-12-20T18:00+01:00",
     "title": "Weihnachtsfeier",
     "type": "S"
   }
