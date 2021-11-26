@@ -17,15 +17,22 @@
     "day": 15,
     "mon": 12,
     "yea": 2021,
-    "title": "Hybridsitzung",
-    "type": "A"
+    "title": "Onlinesitzung",
+    "type": "B"
   },
   {
     "day": 22,
     "mon": 12,
     "yea": 2021,
-    "title": "Hybridsitzung",
-    "type": "A"
+    "title": "Onlinesitzung",
+    "type": "B"
+  },
+  {
+    "day": 20,
+    "mon": 12,
+    "yea": 2021,
+    "title": "Weihnachtsfeier",
+    "type": "S"
   }
 ]
  
