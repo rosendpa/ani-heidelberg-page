@@ -1,9 +1,7 @@
 [
   {
-    "day": 1,
-    "mon": 12,
-    "year": 2021,
-    "title": "Hybridsitzung",
+    "date": "2021-12-01T12:00-01:00"
+    "titl": "Hybridsitzung",
     "type": "A"
   },
   {
