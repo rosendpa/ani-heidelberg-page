@@ -1,22 +1,22 @@
 [
   {
     "date": "2021-12-01T19:30+01:00",
-    "titl": "Hybridsitzung",
+    "title": "Hybridsitzung",
     "type": "A"
   },
   {
-    "date": "2021-12-8T19:30+01:00",
-    "titl": "Hybridsitzung",
+    "date": "2021-12-08T19:30+01:00",
+    "title": "Hybridsitzung",
     "type": "A"
   },
   {
     "date": "2021-12-15T19:30+01:00",
-    "titl": "Onlinesitzung",
+    "title": "Onlinesitzung",
     "type": "B"
   },
   {
     "date": "2021-12-22T19:30+01:00",
-    "titl": "Onlinesitzung",
+    "title": "Onlinesitzung",
     "type": "B"
   },
   {
