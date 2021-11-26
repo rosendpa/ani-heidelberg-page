@@ -1,0 +1,17 @@
+.navbar-brand
+{ 
+  top:00;
+  font-size: 48px;
+}
+
+.nav {
+    position:absolute;
+    bottom:00;
+    right:20%;
+
+}
+
+.fixed{
+  width: 250px;
+}
+  
