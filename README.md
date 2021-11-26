@@ -1,1 +1,0 @@
-# ani-heidelberg-page
