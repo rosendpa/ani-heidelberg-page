@@ -7,25 +7,271 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <title>Frontend Ani-Heidelberg Start</title>
+
+    <!-- READ ANIME LIST -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                url: "https://rosendpa.github.io/ani-heidelberg-page/archive.json",
+                cache: false, 
+                async: false, // <- this turns it into synchronous
+                success: function (result) {
+                    
+                    let tmp = []
+                    $.each(result, function (index, item) {
+                        if (item.activ !== "W"){
+                            tmp.push(item.semes)
+                        }
+                    });
+                    let sem_list = [...new Set(tmp)]
+                    sem_list.sort().reverse()
+                    
+                    $.each(result, function (index, item) {
+                        if (item.activ !== "W"){
+                            $(".card-group").eq(sem_list.indexOf(item.semes)).append(
+                            "<div class='col col-xxl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-items-stretch mt-3'>" + 
+                                "<div class='card' style='width: 18rem;'>" +
+                                    "<img src='" +  item.imgur  + "' class='card-img-top' alt='...'>" +
+                                    "<div class='card-body'>" + 
+                                        "<div title='" + item.tialt + "'>" + "<b>" +  item.title  + "</b><br>" + "</div>" +
+                                        "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
+                                        "<p class='card-text'> </p>" + 
+                                    "</div>" + 
+                                    "<div class='card-footer'>" + 
+                                        "<small class='text-muted'> Bis einschließlich Folge <b>"+ item.progr +"</b> am "+item.vdate+"</small>" + 
+                                    "</div>" + 
+                                "</div>"  + 
+                            "</div>" 
+                            ); 
+                        }else{
+                            $(".row").eq(0).append(
+                                "<div class='col col-lg-3 col-md-6 d-flex align-items-stretch mt-3'>" +
+                                    "<div class='card' style='width: 18rem;'>" +
+                                        "<img src='" +  item.imgur  + "' class='card-img-top' alt='...'>" +
+                                        "<div class='card-body'>" + 
+                                            "<div title='" + item.tialt + "'>" + "<b>" +  item.title  + "</b><br>" + 
+                                            "</div>" +
+                                            "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
+                                            "<p class='card-text'> </p>" + 
+                                        "</div>" + 
+                                        "<div class='card-footer text-md-center'>" + 
+                                            "<div class='progress position-relative' style='height: 19px;'>" + 
+                                                "<div class='progress-bar bg-dark' role='progressbar' style='width: "+ (eval(item.progr)*100) +"%' aria-valuenow='50' aria-valuemin='0' aria-valuemax='100'>"+
+                                                "</div>"+
+                                                "<medium class='justify-content-center d-flex position-absolute w-100' style='color:#808080'> <b>Folge "+ item.progr +"</b></medium>"+
+                                            "</div>"+
+                                            "<small class='text-muted'>bis einschließlich <u>" + item.vdate + "</u></small>"+
+                                        "</div>" + 
+                                    "</div>"  + 
+                                "</div>" 
+                            )
+                        }
+                    });            
+                    var j;
+                    let ntp = "";
+                    for (j = 0; j < sem_list.length; j++) {
+                        if (sem_list[j][2] == "W"){
+                            ntp = "Wintersemester 20" + sem_list[j].slice(0,2) + "/20" + (parseInt(sem_list[j].slice(0,2))+1)
+                        }else{
+                            ntp = "Sommersemester 20" + sem_list[j].slice(0,2) 
+                        }
+                    $(".separator").eq(j).append("<br><br><h2>"+ntp+" <span class='badge bg-secondary'></span></h1><br>")
+                    }        
+                }
+            });
+        });
+    </script>
+    <!-- /READ ANIME LIST -->
+
 </head>
+
+
 <body>
-    <nav class="navbar navbar-expand-lg bg-dark navbar dark">
+    <!-- NAVBAR -->
+    <nav class="navbar bg-dark navbar dark py-3">
         <div class="container">
-            <a href="#" class="navbar-brand">Ani-Heidelberg</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a href="#info" class="nav-link">INFO</a>
-                    </li>
-                </ul>
+            <a href="#" class="navbar-brand"><h1>ANI-Heidelberg</h1></a>
+            <ul class="nav nav-tabs " id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="archive-tab" data-bs-toggle="tab" data-bs-target="#archive" type="button" role="tab" aria-controls="archive" aria-selected="false">Archiv</button>
+                </li>
+            </ul>
+        </div> 
+    </nav>
+    <!-- /NAVBAR -->
+
+<div class="container">
+    <div style="background-color: rgb(255, 255, 255)">
+        
+        <div class="tab-content" id="myTabContent">
+
+            <!-- HOME TAB -->
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                <div class="container-fluid">
+                    <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
+                        <h1 class="display-4">Willkommen beim Anime-Club der Universität Heidelberg!</h1>
+                        <p class="lead my-4"> Wir sind eine Hochschulgruppe, die sich dem Anime, dem Manga, dem Cosplay und der japanischen Kultur verschrieben hat. <br>
+                            Das Kernstück unserer Aktivitäten bilden unsere wöchentlichen Treffen, bei denen wir jeweils Folgen von je <a class="text-dark" href="#program">vier wechselnden Anime</a> auf Leinwand mit Heimkinoatmosphäre schauen. Im Anschluss folgt eine Diskussionsrunde, bei der die Qualität der Serien, kulturelle und gesellschaftliche Aspekte, Produktion und vieles mehr in lockerer Atmosphäre besprochen werden. 
+                        </p> 
+                        <p class="lead my-4">
+                            Bei der Auswahl der Serien achten wir auf eine ausgewogene Mischung aus verschiedenen Genres (Comedy, Drama, Action, Science-Fiction, ...).<br>
+                            Bei Gelegenheit führen wir auch Sonderaktionen durch (z.B. gemeinsame Besuche von Conventions, Hanami auf der Neckarwiese).
+                            Wir sind zwar eine Hochschulgruppe, doch auch Nicht-Studierende sind herzlich willkommen. Eine vorherige Anmeldung ist nicht nötig.
+                        </p>
+                        
+                        
+                        <div class="alert p-2 my-4 alert-warning" role="alert">
+                            <b>Trotz der SARS-CoV-2-Pandemie können die Treffen weiterhin in einem Hybrid-Format (parallel in Präsenz und auf Discord) stattfinden. <br>
+                            An einer Online-Teilnahme Interessierte sind gerne eingeladen, sich für weitere Informationen und für den Zugang zu melden. </b>
+                            <div class="small">※ Teilnahme nur mit 2G-Nachweis, FFP2-Maske und Datenerhebung zur Kontaktnachverfolgung. (Stand 25.11.2021)
+                            </div> 
+                        </div>
+
+
+                        <blockquote class="blockquote">
+                            Wer sich im Voraus anmelden möchte, weitere Fragen oder gar persönliche Bedenken hat, kann gerne eine Nachricht an Paul schreiben. <br>
+                            Kontakt: <b><a class="text-dark" href="mailto:ani-heidelberg@stura.uni-heidelberg.de">ani-heidelberg@stura.uni-heidelberg.de</a></b> 
+                        </blockquote>
+                            
+                        
+                          
+
+                        
+
+
+                        
+                        
+                        <div class="p-3 my-5 rounded-1" style="background-color: #9e9e9e67;">
+                            <h2>Nächste Sitzung:</h2> 
+                            <p class="lead">
+                                <blockquote class="p-1 blockquote text-primary my-4">
+                                    Am <b>01.12.2021</b> um <b>19:30 Uhr</b><br>
+                                    StuRa Sitzungsraum <a href="#directions"class="small text-muted">(Wegbeschreibung)</a><br>
+                                        
+                                    Albert-Überle-Straße 3-5<br>
+                                    69120 Heidelberg<br>
+                                    <small class="text-muted">※ Am Tag des Treffens ab ca. 19:15 telefonisch erreichbar unter 06221/54-3451</small>
+                                </blockquote>
+                            </p>
+                            <h2 id="program">Aktuelles Programm:</h2>  
+                            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                            <div class="row my-1 row-cols-1 row-cols-md-4 g-4 align-items-stretch "></div>
+                        </div>
+                            
+                         
+
+                        
+
+                    </div>
+
+                </div>
+
+                        <!-- More
+
+                        <div class="col-md-4">
+                            <h2>HTML</h2>
+                            <p>HTML is the standard markup language for describing the structure of the web pages. Our HTML tutorials will help you to understand the basics of latest HTML5 language, so that you can create your own web pages or website.</p>
+                            <p><a href="https://www.tutorialrepublic.com/html-tutorial/" target="_blank" class="btn btn-success">Learn More &raquo;</a></p>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>CSS</h2>
+                            <p>CSS is used for describing the presentation of web pages. CSS can save a lot of time and effort. Our CSS tutorials will help you to learn the essentials of latest CSS3, so that you can control the style and layout of your website.</p>
+                            <p><a href="https://www.tutorialrepublic.com/css-tutorial/" target="_blank" class="btn btn-success">Learn More &raquo;</a></p>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Bootstrap</h2>
+                            <p>Bootstrap is a powerful front-end framework for faster and easier web development. Our Bootstrap tutorials will help you to learn all the features of latest Bootstrap 4 framework so that you can easily create responsive websites.</p>
+                            <p><a href="https://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank" class="btn btn-success">Learn More &raquo;</a></p>
+                        </div>
+                    
+
+                    <hr>
+                    <footer>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Copyright &copy; 2021 Tutorial Republic</p>
+                            </div>
+                            <div class="col-md-6 text-md-end">
+                                <a href="#" class="text-dark">Terms of Use</a> 
+                                <span class="text-muted mx-2">|</span> 
+                                <a href="#" class="text-dark">Privacy Policy</a>
+                            </div>
+                        </div>
+                    </footer>-->
+                
+
 
 
             </div>
-        </div>
-    </nav>
+            <!-- /HOME TAB -->
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+            <!-- ARCHIVE TAB -->
+            <div class="tab-pane fade" id="archive" role="tabpanel" aria-labelledby="archive-tab">
+
+                
+                                
+                <div class="container">
+                    <div class="container">
+                        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                        <div class="separator"></div><div class="card-group"></div>
+                    </div>         
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                </div>
+            </div>
+            <!-- /ARCHIVE TAB -->
+
+        </div> 
+    </div>  
+</div> 
+    
+<div class="col-md-12">
+    Anime und vor allem Manga sind ein fester Bestandteil japanischen Kultur. In Japan lassen sich die Vorläufer dieser Tradition bis ins 8. Jahrhundert zurückverfolgen. Aus Japan kommen auch heute noch die meisten Anime und Manga. Nach dem zweiten Weltkrieg verbreiteten sich Anime auch über Asien hinaus und erfreuen sich zunehmender Beliebtheit vor allem in den USA und Großbritannien. <br>
+    Die öffentliche Meinung in Deutschland betrachtet Anime und Manga dagegen noch immer fälschlicherweise als reine Kinderunterhaltung. Tatsächlich sprechen Anime und Manga jedoch viele Altersgruppen an und bieten darstellerische Möglichkeiten weit über den Realfilm hinaus. Oftmals vermitteln sie neben der Unterhaltung auch tiefergehende Botschaften. Im Anime-Club bemühen wir uns darum, die gesamte Bandbreite an Genres und Formaten abzudecken und dabei auch hochwertige Filme und Serien vorzustellen, die in Deutschland eher unbekannt sind.
+</div>
+
+
+
+
+<iframe src="calendar.html" frameborder="0" width="250" height="400"></iframe>
+
+    
+
+    
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+
+
+
+
 </body>
 </html>
