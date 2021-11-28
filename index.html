@@ -127,7 +127,215 @@
 
                             <div class="p-4 my-1 rounded-3" style="background-color: #eeeeee;">
                                 <h4>Aktuelle Termine</h4><br>
-                                <iframe src="calendar.html" frameborder="0" width="180" height="420"></iframe>
+
+                                <!-- CALENDAR -->
+                                <calendar style="height:450px">
+                                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                                    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+                                  
+                                    <div class="container calendar">
+                                      <calout></calout>
+                                    </div>
+                                    
+                                    <script>
+                                    var schedule = []
+                                      function ajaxCallBack(retString){
+                                        schedule = retString;
+                                  
+                                        //naechste sitzung updaten
+                                        schedcallback(schedule)
+                                  
+                                        //Starte Kalenderbau
+                                        const months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+                                        const now = new Date();
+                                        
+                                        // first prefix
+                                        $("calout").append(
+                                                            "<table>"+
+                                                                "<thead>"+
+                                                                  "<tr>"+
+                                                                    "<th colspan='7' style='text-align:center'>"+months[now.getMonth()]+" "+now.getFullYear()+"</th>"+
+                                                                  "</tr>"+
+                                                                  "<tr>"+
+                                                                    "<th style='text-align:center'>月</th>"+
+                                                                    "<th style='text-align:center'>火</th>"+
+                                                                    "<th style='text-align:center'>水</th>"+
+                                                                    "<th style='text-align:center'>木</th>"+
+                                                                    "<th style='text-align:center'>金</th>"+
+                                                                    "<th style='text-align:center'>土</th>"+
+                                                                    "<th style='text-align:center'>日</th>"+
+                                                                  "</tr>"+
+                                                                "</thead>"+
+                                                                "<tbody>"+
+                                                                  "<tr>"
+                                                          )
+                                        
+                                        // fist day and offset                            
+                                        const month_start = new Date(now.getFullYear(),now.getMonth(),1,12,0,0)
+                                        let offset = month_start.getDay()-1
+                                        if (offset<0){
+                                          offset = 6
+                                        }
+                                        for (i=0;i<offset; i++){
+                                          $("calout").append("<td colspan=1></td>")
+                                        }
+                                  
+                                        //alle tage einzeln eintragen
+                                        iterator = month_start
+                                        do {
+                                          //alle marker sammeln
+                                          let string = ""
+                                          string = string + "<td class ='"
+                                          if(now.getDate()>iterator.getDate()){
+                                            string = string + "past "
+                                          }
+                                          if(now.getDate()==iterator.getDate()){
+                                            string = string + "today "
+                                          }
+                                          for (var i = 0; i < schedule.length; i++) {
+                                            if (schedule[i][0].getMonth() == iterator.getMonth()){
+                                              if (schedule[i][0].getDate() == iterator.getDate()){
+                                                if(schedule[i][2] == "A"){
+                                                  string = string + "markA "
+                                                }
+                                                if(schedule[i][2] == "B"){
+                                                  string = string + "markB "
+                                                }
+                                                if(schedule[i][2] == "S"){
+                                                  string = string + "markS "
+                                                }
+                                                string = string + "' title='"+("00" + schedule[i][0].getHours()).slice(-2) + ":" + ("00" + schedule[i][0].getMinutes()).slice(-2) + " - " + schedule[i][1]
+                                              }
+                                            }
+                                          }
+                                         //marker eintragen
+                                          string = string + "'>"+iterator.getDate()+"</td>";
+                                          $("calout").append(string)
+                                  
+                                         //position testen
+                                          offset = offset + 1
+                                          if (offset>6){
+                                            offset = 0
+                                            $("calout").append(
+                                              "</tr>"+
+                                              "<tr>"
+                                            )
+                                          }
+                                          iterator.setDate(iterator.getDate()+1)      
+                                          //bis monatsende
+                                        } while(iterator.getMonth()==now.getMonth())
+                                  
+                                        //suffix
+                                        $("calout").append(
+                                              "</tr>"+
+                                            "</tbody>"+
+                                          "</table> <p></p>")
+                                  
+                                        //repeat
+                                          $("calout").append(
+                                                            "<table>"+
+                                                                "<thead>"+
+                                                                  "<tr>"+
+                                                                    "<th colspan='7' style='text-align:center'>"+months[iterator.getMonth()]+" "+iterator.getFullYear()+"</th>"+
+                                                                  "</tr>"+
+                                                                  "<tr>"+
+                                                                    "<th style='text-align:center'>月</th>"+
+                                                                    "<th style='text-align:center'>火</th>"+
+                                                                    "<th style='text-align:center'>水</th>"+
+                                                                    "<th style='text-align:center'>木</th>"+
+                                                                    "<th style='text-align:center'>金</th>"+
+                                                                    "<th style='text-align:center'>土</th>"+
+                                                                    "<th style='text-align:center'>日</th>"+
+                                                                  "</tr>"+
+                                                                "</thead>"+
+                                                                "<tbody>"+
+                                                                  "<tr>"
+                                          )
+                                               
+                                        if (offset>0){
+                                          for (i=0;i<offset; i++){
+                                            $("calout").append("<td colspan=1></td>")
+                                          }
+                                        }
+                                        
+                                        do {
+                                          let string = ""
+                                          string = string + "<td class ='"
+                                          for (var i = 0; i < schedule.length; i++) {
+                                            if (schedule[i][0].getMonth() == iterator.getMonth()){
+                                              if (schedule[i][0].getDate() == iterator.getDate()){
+                                                if(schedule[i][2] == "A"){
+                                                  string = string + "markA "
+                                                }
+                                                if(schedule[i][2] == "B"){
+                                                  string = string + "markB "
+                                                }
+                                                if(schedule[i][2] == "S"){
+                                                  string = string + "markS "
+                                                }
+                                                string = string + "' title='"+("00" + schedule[i][0].getHours()).slice(-2) + ":" + ("00" + schedule[i][0].getMinutes()).slice(-2) + " - " + schedule[i][1]
+                                              }
+                                            }
+                                          }
+                                          string = string + "'>"+iterator.getDate()+"</td>";
+                                          $("calout").append(string)
+                                  
+                                          offset = offset + 1
+                                          if (offset>6){
+                                            offset = 0
+                                            $("calout").append(
+                                              "</tr>"+
+                                              "<tr>"
+                                            )
+                                          }
+                                          iterator.setDate(iterator.getDate()+1)      
+                                        } while(iterator.getMonth()==now.getMonth()+1)
+                                  
+                                        $("calout").append(
+                                              "</tr>"+
+                                            "</tbody>"+
+                                          "</table>")        
+                                      }
+                                    </script>
+                                  
+                                  
+                                    
+                                  
+                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                    <script>
+                                      $(function () {
+                                          $.ajax({
+                                              url: "https://rosendpa.github.io/ani-heidelberg-page/dates.json",
+                                              cache: false, 
+                                              success: function (result) {
+                                                
+                                              var schedule = []
+                                                  $.each(result, function (index, item) {
+                                                      schedule.push([new Date(item.date),  item.title,  item.type])
+                                                    });
+                                              
+                                              var i = 0
+                                              var j = 0
+                                              var tmp = []
+                                              for (i = 0; i<schedule.length; i++){
+                                                for (j = i+1; j<schedule.length; j++){
+                                                  if(schedule[i][0].getTime()<schedule[j][0].getTime()){
+                                                    tmp = schedule[i]
+                                                    schedule[i] = schedule[j]
+                                                    schedule[j] = tmp
+                                                  }
+                                                }
+                                              }
+                                              ajaxCallBack(schedule)
+                                              }
+                                          });
+                                      })
+                                    </script>
+                                  
+                                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>       
+                                </calendar>
+                                <!-- /CALENDAR -->
 
                             </div>
 
@@ -156,7 +364,7 @@
         
         
                                 <blockquote class="blockquote">
-                                    Wer sich im Voraus anmelden möchte, weitere Fragen oder gar persönliche Bedenken hat, kann gerne eine Nachricht an Paul schreiben: <br>
+                                    Wer sich im Voraus anmelden möchte, weitere Fragen oder gar persönliche Bedenken hat, kann gerne eine Nachricht an uns schreiben: <br>
                                     Kontakt: <b><a class="text-dark" href="mailto:ani-heidelberg@stura.uni-heidelberg.de">ani-heidelberg@stura.uni-heidelberg.de</a></b> 
                                 </blockquote>
                                     
@@ -167,46 +375,45 @@
         
         
                                 
-                                
+                                <!-- AKTUELLE SITZUNG-->
                                 <div class="p-3 my-5 rounded-1" style="background-color: #9e9e9e67;">
+                                    <script>
+                                        
+                                        function schedcallback(schedule){
+                                            var future = []
+                                            var i = 0
+                                            var j = []
+                                            const now = new Date()
+                                            for (i = schedule.length-1; i>=0; i--){
+                                                //console.log(schedule[i])
+                                                if(schedule[i][0].getTime()>now.getTime()-1000*60*15){
+                                                    if(schedule[i][2]=="A" || schedule[i][2]=="B")
+                                                    future.push(schedule[i])
+                                                } 
+                                            }
+
+                                            if (future.length==0){
+                                                $("sesinf").append('<small class="text-muted">Derzeit keine aktuelle Sitzung öffentlich eingetragen. Für weitere Details zur Teilnahme bitte anfragen.</small>')
+                                            }else{
+                                                $("sesinf").append("<b>"+future[0][1]+"</b>")
+                                                $("sesinf").append(" am <b>" + ("00"+future[0][0].getDate()).slice(-2) + "." + ("00" + (future[0][0].getMonth()+1) ).slice(-2) + "."+ future[0][0].getFullYear() +"</b> ab <b>"+ ("00"+future[0][0].getHours()).slice(-2) + ":" + ("00" + future[0][0].getMinutes()).slice(-2) +" Uhr</b><br>")
+                                                if (future[0][2]=="A"){
+                                                    $("sesinf").append('StuRa Sitzungsraum <a href="#directions"class="small text-muted">(Wegbeschreibung)</a><br>Albert-Überle-Straße 3-5<br> 69120 Heidelberg<br><small class="text-muted">※ Am Tag des Treffens ab ca. 19:15 telefonisch erreichbar unter 06221/54-3451</small>')
+                                                }else{
+                                                    $("sesinf").append('<small class="text-muted">Zur Teilnahme bitte anfragen.</small>')
+                                                }
+                                            }
+
+                                        }
+                                    </script>
+                                    
                                     <h2>Nächste Sitzung:</h2> 
                                     <p class="lead">
                                         <blockquote class="p-1 blockquote text-primary my-4">
                                             <sesinf> </sesinf>
-        
-                                            <script>
-                                                function schedcallback(schedule){
-                                                    var future = []
-                                                    var i = 0
-                                                    var j = []
-                                                    const now = new Date()
-                                                    for (i = schedule.length-1; i>=0; i--){
-                                                        //console.log(schedule[i])
-                                                        if(schedule[i][0].getTime()>now.getTime()-1000*60*15){
-                                                            if(schedule[i][2]=="A" || schedule[i][2]=="B")
-                                                            future.push(schedule[i])
-                                                        } 
-                                                    }
-        
-                                                    if (future.length==0){
-                                                        $("sesinf").append('<small class="text-muted">Derzeit keine aktuelle Sitzung öffentlich eingetragen. Für weitere Details zur Teilnahme bitte anfragen.</small>')
-                                                    }else{
-                                                        $("sesinf").append("<b>"+future[0][1]+"</b>")
-                                                        $("sesinf").append(" am <b>" + ("00"+future[0][0].getDate()).slice(-2) + "." + ("00" + (future[0][0].getMonth()+1) ).slice(-2) + "."+ future[0][0].getFullYear() +"</b> ab <b>"+ ("00"+future[0][0].getHours()).slice(-2) + ":" + ("00" + future[0][0].getMinutes()).slice(-2) +" Uhr</b><br>")
-                                                        if (future[0][2]=="A"){
-                                                            $("sesinf").append('StuRa Sitzungsraum <a href="#directions"class="small text-muted">(Wegbeschreibung)</a><br>Albert-Überle-Straße 3-5<br> 69120 Heidelberg<br><small class="text-muted">※ Am Tag des Treffens ab ca. 19:15 telefonisch erreichbar unter 06221/54-3451</small>')
-                                                        }else{
-                                                            $("sesinf").append('<small class="text-muted">Zur Teilnahme bitte anfragen.</small>')
-                                                        }
-                                                    }
-        
-                                                }
-                                            </script>
-        
-                                            
-                                            
                                         </blockquote>
                                     </p>
+
                                     <h2 id="program">Aktuelles Programm:</h2>  
                                     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
                                     <frow class="row my-1 row-cols-1 row-cols-md-4 g-4 align-items-stretch">
@@ -268,11 +475,7 @@
 
                 
               
-                                
-
-
-                </script>
-
+                       
 
                             </div>
                             <!-- /INFO TAB -->
