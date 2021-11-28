@@ -15,3 +15,81 @@
   width: 250px;
 }
   
+
+
+
+calendar {
+  content: border-box;
+  font-family: "Inter", sans-serif;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  background: #ffffff00;
+}
+
+.container.calendar {
+  border-radius: 2px;
+  padding: 2px;
+  display: inline-block; 
+  width: 250px;
+}
+
+
+td:hover {
+  background: #8b8b8b00;
+  color: rgb(0, 0, 0);
+  border-radius: 2px;
+  padding: 3px;
+  box-shadow: 2px 2px 2px #b3b3b3, -1px 0 0.6em #bdbdbd;
+}
+
+td {
+  width: 32px;
+  padding: 3px;
+  margin: 2px;
+  height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+tr {
+  width: 32px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
+}
+
+th {
+  width: 32px;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+
+
+.markA {
+  background-color: #a6d2ff;
+  border-radius: 0px;
+  box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
+}
+.markB {
+  background-color: #fff9a9;
+  border-radius: 0px;
+  box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
+}
+.markS {
+  background-color: #ff7be2;
+  border-radius: 0px;
+  box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
+}
+
+.past {
+  color: rgb(202, 202, 202);
+}
+
+.today {
+  color: rgb(255, 0, 0);
+}
