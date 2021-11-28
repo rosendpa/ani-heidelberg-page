@@ -23,7 +23,6 @@ calendar {
   font-family: "Inter", sans-serif;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   overflow: hidden;
   display: flex;
   background: #ffffff00;

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <title>Frontend Ani-Heidelberg Start</title>
+    <title>Ani-Heidelberg</title>
 
     <!-- READ ANIME LIST -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -76,7 +76,7 @@
                         }else{
                             ntp = "Sommersemester 20" + sem_list[j].slice(0,2) 
                         }
-                    $(".separator").eq(j).append("<br><br><h2>"+ntp+" <span class='badge bg-secondary'></span></h1><br>")
+                        $(".separator").eq(j).append("<br><br><h2>"+ntp+" <span class='badge bg-secondary'></span></h1>")
                     }        
                 }
             });
@@ -110,26 +110,23 @@
 
 <div class="container">
     <div style="background-color: rgb(255, 255, 255)">
-        
         <div class="tab-content" id="myTabContent">
 
             <!-- HOME TAB -->
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
 
                 <div class="container-fluid">
                     <div class="row"> 
                         <div class="col  col-lg-2 d-none d-xl-block fixed">
                             
                             <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
-                                <div style="height:350px">Platzhalter für Coverbild o.ä. </div>
+                                <div style="height:350px">Platzhalter für Bild o.ä. </div>
                             </div>
 
                             <div class="p-4 my-1 rounded-3" style="background-color: #eeeeee;">
                                 <h4>Aktuelle Termine</h4><br>
-
                                 <!-- CALENDAR -->
-                                <calendar style="height:450px">
+                                <calendar>
                                     <link rel="preconnect" href="https://fonts.googleapis.com">
                                     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                                     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
@@ -336,7 +333,6 @@
                                     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>       
                                 </calendar>
                                 <!-- /CALENDAR -->
-
                             </div>
 
                         </div>
@@ -475,69 +471,50 @@
 
                 
               
-                       
+        
 
-                            </div>
-                            <!-- /INFO TAB -->
-
-
-                            <!-- ARCHIVE TAB -->
-                            <div class="tab-pane fade" id="archive" role="tabpanel" aria-labelledby="archive-tab">
-
-                                
-                                                
-                                <div class="container">
-                                    <div class="container">
-                                        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                        <div class="separator"></div><div class="card-group"></div>
-                                    </div>         
-                                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-                                </div>
-                            </div>
-                            <!-- /ARCHIVE TAB -->
-
-                        </div> 
-                    </div>  
-                </div> 
-    
+            </div>
+            <!-- /INFO TAB -->
 
 
+            <!-- ARCHIVE TAB -->
+            <div class="tab-pane fade" id="archive" role="tabpanel" aria-labelledby="archive-tab">
 
+                <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
+                
+                    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                    <div class="separator"></div><div class="card-group"></div>
+                </div>
+                 
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                
+            </div>
+            <!-- /ARCHIVE TAB -->
 
-
-
-
-
-
-    
-
-    
-  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
-
-
-
-
+        </div> 
+    </div>  
+</div> 
+        
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
