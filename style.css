@@ -7,14 +7,19 @@
 .nav {
     position:absolute;
     bottom:00;
-    right:20%;
+    right:15%;
+}
 
+@media (max-width: 1000px) {
+  tabdiv {
+    height: 30px;
+  }
 }
 
 .fixed{
   width: 250px;
 }
-  
+
 
 
 calendar {
