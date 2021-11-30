@@ -30,7 +30,7 @@ calendar {
 .container.calendar {
   border-radius: 2px;
   padding: 2px;
-  display: inline-block; 
+  display: inline-flex; 
   width: 250px;
 }
 
