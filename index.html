@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -88,9 +88,11 @@
     </script>
     <!-- /READ ANIME LIST/ PROGRAMM/ ARCHIV -->
   </head>
+  
+  
   <body>
     <!-- NAVBAR -->   
-    <nav class="navbar bg-dark py-3">
+    <nav class="navbar bg-dark py-0">
       <div class="container">        
         <a href="#" class="navbar-brand">
           ANI-Heidelberg
@@ -111,9 +113,12 @@
       </tabdiv>
     </nav>
     <!-- /NAVBAR -->
+
+    <!-- PAGE BODY-->
     <div class="container">
       <div style="background-color: rgb(255, 255, 255)">
         <div class="tab-content" id="myTabContent">
+
           <!-- HOME TAB -->
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="container-fluid">
@@ -268,8 +273,7 @@
                                   "<tr>"
                                 )
                               }
-                              iterator.setDate(iterator.getDate()+1)      
-                              console.log(iterator, month_start)
+                              iterator.setDate(iterator.getDate()+1)  
                             } while(iterator.getMonth()==month_start.getMonth())
                         
                             $("calout").append(
@@ -315,7 +319,7 @@
                 </div>
                 <div class="col">
                   <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
-                    <h1 class="display-4">Willkommen beim Anime-Club der Universität Heidelberg!</h1>
+                    <h1 class="display-4">Willkommen beim Anime-Club an der Universität Heidelberg!</h1>
                     <p class="lead my-4"> Wir sind eine Hochschulgruppe, die sich dem Anime, dem Manga, dem Cosplay und der japanischen Kultur verschrieben hat. <br>
                       Das Kernstück unserer Aktivitäten bilden unsere wöchentlichen Treffen, bei denen wir jeweils Folgen von je <a class="text-dark" href="#program">vier wechselnden Anime</a> auf Leinwand mit Heimkinoatmosphäre schauen. Im Anschluss folgt eine Diskussionsrunde, bei der die Qualität der Serien, kulturelle und gesellschaftliche Aspekte, Produktion und vieles mehr in lockerer Atmosphäre besprochen werden. 
                     </p>
@@ -388,7 +392,8 @@
                 </div>
               </div>
             </div>
-            <!-- More
+
+            <!-- FOOTER
               <hr>
               <footer>
                   <div class="row">
@@ -402,58 +407,29 @@
                       </div>
                   </div>
               </footer>-->
+
           </div>
           <!-- /HOME TAB -->
+
           <!-- INFO TAB -->
           <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
-            <div class="col-md-12">
+
+
+            <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
               Anime und vor allem Manga sind ein fester Bestandteil japanischen Kultur. In Japan lassen sich die Vorläufer dieser Tradition bis ins 8. Jahrhundert zurückverfolgen. Aus Japan kommen auch heute noch die meisten Anime und Manga. Nach dem zweiten Weltkrieg verbreiteten sich Anime auch über Asien hinaus und erfreuen sich zunehmender Beliebtheit vor allem in den USA und Großbritannien. <br>
               Die öffentliche Meinung in Deutschland betrachtet Anime und Manga dagegen noch immer fälschlicherweise als reine Kinderunterhaltung. Tatsächlich sprechen Anime und Manga jedoch viele Altersgruppen an und bieten darstellerische Möglichkeiten weit über den Realfilm hinaus. Oftmals vermitteln sie neben der Unterhaltung auch tiefergehende Botschaften. Im Anime-Club bemühen wir uns darum, die gesamte Bandbreite an Genres und Formaten abzudecken und dabei auch hochwertige Filme und Serien vorzustellen, die in Deutschland eher unbekannt sind.
-            </div>
-            Wegbeschreibung:
-            Eine Karte mit dem Treffpunkt ist unten im Beitrag zu sehen!
-            Die Räume des StuRa erreicht ihr mit dem RNV am besten über die Haltestelle Brückenstraße. Diese wird durch die Linien 31, 23 und 5 bedient. Von der Haltestelle aus geht ihr die Straße herunter Richtung Neckar und biegt dann bei der letzten Querstraße vor der Theodor-Heuss-Brücke ab. Dann nehmt ihr die zweite (steile) Abbiegemöglichkeit nach links und geht den Berg etwas hinauf. Nach einer scharfen Rechtskurve findet ihr das Gebäude direkt auf der linken Seite. Wenn ihr zur Haltestelle Bergstraße (Linie 34) fahrt, seid ihr schon direkt bei der Einmündung.
-            Wenn man etwas Fußmarsch in Kauf nimmt, ist der Ort auch gut vom Bismarckplatz aus erreichbar. In der näheren Umgebung sollte es auch genügend Möglichkeiten zum Abstellen von Fahrrädern geben.
-            Wenn ihr das Gebäude erreicht habt, müsst ihr, um zu den Räumlichkeiten des Stura zu gelangen, den Nebeneingang rechts (nicht den Haupteingang mit der Treppe!) nehmen. Durch den Eingang gelangt ihr direkt in die Küche. Von dort müsst ihr links eine Treppe hinunter, euch im nächsten Raum links halten und einfach bis zur nächsten Tür durchlaufen. Dann habt ihr euer Ziel erreicht. Solltet ihr es nicht finden, könnt ihr auch einfach von draußen ans Fenster klopfen, dann holt euch einer ab (von außen erster Raum links, Beamer hängt gut sichtbar an der Decke).
-            Sollte es noch Fragen zu den Örtlichkeiten oder der Anreise geben, kann man uns einfach via der angegeben Mail-Adresse erreichen. Auch an dem Tag selber sind wir via E-Mail erreichbar.
-            <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Accordion Item #1
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Accordion Item #2
-                  </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Accordion Item #3
-                  </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                  </div>
-                </div>
-              </div>
-            </div>
+              
+              <h5>Wegbeschreibung</h5>
+              <p> Eine Karte mit dem Treffpunkt ist unten zu sehen!
+              Die Räume des StuRa erreicht ihr mit RNV gut über die Haltestelle Brückenstraße. Diese wird durch die Linien 31, 23 und 5 bedient. Wenn man etwas Fußmarsch in Kauf nimmt, ist der Ort auch gut vom Bismarckplatz aus erreichbar. In der näheren Umgebung sollte es auch genügend Möglichkeiten zum Abstellen von Fahrrädern geben.
+              Wenn ihr das Gebäude erreicht habt, müsst ihr, um zu den Räumlichkeiten des Stura zu gelangen, den Nebeneingang rechts (nicht den Haupteingang mit der Treppe links!) nehmen. Durch den Eingang gelangt ihr direkt in die Küche. Von dort müsst ihr links eine Treppe hinunter, euch im nächsten Raum links halten zur nächsten Tür durchlaufen. Dann habt ihr euer Ziel erreicht.<br>
+              Solltet ihr es nicht finden, könnt ihr auch einfach von draußen ans Fenster klopfen, dann holt euch einer ab (von der Straße der erste Raum links, Beamer hängt gut sichtbar an der Decke). Sollte es noch Fragen zu den Örtlichkeiten oder der Anreise geben, kann man uns einfach via der angegeben Mail-Adresse erreichen. Auch an dem Tag selber sind wir via E-Mail erreichbar.</p>
+              <iframe width= 100% height =400px style="border:0" padding=10px loading="lazy" allowfullscreen
+              src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJo4HlHRrBl0cROIhz7ZR9k94&key=AIzaSyASpjN5oCxnx9Qop0tiGctlzJJ5lYE-1ec"></iframe> 
+            
+            </div>   
+         
+
           </div>
           <!-- /INFO TAB -->
           <!-- ARCHIVE TAB -->
