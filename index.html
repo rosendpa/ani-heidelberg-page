@@ -47,11 +47,11 @@
                           ); 
                       }else{
                         try{
-                          let progress = eval(item.progr)
+                          var progress = eval(item.progr)
                         }
                         catch(e){
                           console.log(e)
-                          let progress = 0.
+                          var progress = 0.
                         }
                         $("frow").eq(0).append(
                               "<div class='col col-xl-3 col-lg-3 col-md-6 d-flex align-items-stretch mt-3'>" +
