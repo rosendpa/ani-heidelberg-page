@@ -27,9 +27,6 @@
                   });
                   let sem_list = [...new Set(tmp)]
                   sem_list.sort().reverse()
-                  
-                  
-                  
 
                   $.each(result, function (index, item) {
                       if (item.activ !== "W"){
@@ -68,7 +65,7 @@
                                       "</div>" + 
                                       "<div class='card-footer text-md-center'>" + 
                                           "<div class='progress position-relative' style='height: 19px;'>" + 
-                                              "<div class='progress-bar bg-dark' role='progressbar' style='width: "+ progress*100) +"%' aria-valuenow='50' aria-valuemin='0' aria-valuemax='100'>"+
+                                              "<div class='progress-bar bg-dark' role='progressbar' style='width: "+ progress*100 +"%' aria-valuenow='50' aria-valuemin='0' aria-valuemax='100'>"+
                                               "</div>"+
                                               "<medium class='justify-content-center d-flex position-absolute w-100' style='color:#808080'> <b>Folge "+ item.progr +"</b></medium>"+
                                           "</div>"+
@@ -436,7 +433,6 @@
             
             </div>   
          
-
           </div>
           <!-- /INFO TAB -->
           <!-- ARCHIVE TAB -->
