@@ -1139,6 +1139,8 @@
     "vdate": "08.12.2021",
     "activ": "F"
   },
+   
+   
   {
     "index": "95",
     "malid": "48471",
@@ -1147,8 +1149,8 @@
     "descr": "",
     "imgur": "https://cdn.myanimelist.net/images/anime/1393/118374l.jpg",
     "semes": "21W",
-    "progr": "07/12 ",
-    "vdate": "08.12.2021",
+    "progr": "08/12 ",
+    "vdate": "15.12.2021",
     "activ": "W"
   },
   {
@@ -1164,6 +1166,18 @@
     "activ": "W"
   },
   {
+    "index": "99",
+    "malid": "47778",
+    "title": "Kimetsu no Yaiba: Yuukaku-hen",
+    "tialt": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
+    "descr": "",
+    "imgur": "https://cdn.myanimelist.net/images/anime/1804/117641l.jpg",
+    "semes": "21W",
+    "progr": "02/0?",
+    "vdate": "15.12.2021",
+    "activ": "W"
+  },
+  {
     "index": "98",
     "malid": "46093",
     "title": "Shiroi Suna no Aquatope",
@@ -1171,8 +1185,10 @@
     "descr": "",
     "imgur": "https://cdn.myanimelist.net/images/anime/1932/114952l.jpg",
     "semes": "21S",
-    "progr": "21/24",
-    "vdate": "08.12.2021",
+    "progr": "22/24",
+    "vdate": "15.12.2021",
     "activ": "W"
   }
+   
+   
 ]
