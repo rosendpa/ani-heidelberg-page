@@ -1184,6 +1184,22 @@
     "tialt": "The Aquatope On The White Sand ",
     "descr": "",
     "imgur": "https://cdn.myanimelist.net/images/anime/1932/114952l.jpg",
+    "imgal": [{
+        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1519\/111174.jpg",
+        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1519\/111174l.jpg"
+    }, {
+        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1155\/114242.jpg",
+        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1155\/114242l.jpg"
+    }, {
+        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1932\/114952.jpg",
+        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1932\/114952l.jpg"
+    }, {
+        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1131\/117926.jpg",
+        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1131\/117926l.jpg"
+    }, {
+        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1818\/118614.jpg",
+        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1818\/118614l.jpg"
+    }],
     "semes": "21S",
     "progr": "22/24",
     "vdate": "15.12.2021",
