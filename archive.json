@@ -1151,7 +1151,7 @@
     "semes": "21W",
     "progr": "08/12 ",
     "vdate": "15.12.2021",
-    "activ": "W"
+    "activ": "F"
   },
   {
     "index": "96",
@@ -1163,7 +1163,7 @@
     "semes": "21W",
     "progr": "08/12",
     "vdate": "08.12.2021",
-    "activ": "W"
+    "activ": "F"
   },
   {
     "index": "99",
@@ -1172,6 +1172,19 @@
     "tialt": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
     "descr": "",
     "imgur": "https://cdn.myanimelist.net/images/anime/1804/117641l.jpg",
+    "imgal": [{
+        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1338\/111945.jpg",
+        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1338\/111945l.jpg"
+    }, {
+        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1144\/112062.jpg",
+        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1144\/112062l.jpg"
+    }, {
+        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1804\/117641.jpg",
+        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1804\/117641l.jpg"
+    }, {
+        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1177\/118024.jpg",
+        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1177\/118024l.jpg"
+    }],
     "semes": "21W",
     "progr": "02/??",
     "vdate": "15.12.2021",
