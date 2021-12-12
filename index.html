@@ -29,7 +29,7 @@
                   sem_list.sort().reverse()
 
                   $.each(result, function (index, item) {
-                      if (item.activ !== "W"){
+                      if (item.activ !== "W"){ //ALTE
                           $(".card-group").eq(sem_list.indexOf(item.semes)).append(
                           "<div class='col col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-12 d-flex align-items-stretch mt-3'>" + 
                               "<div class='card' style='width: 18rem;'>" +
@@ -45,19 +45,8 @@
                               "</div>"  + 
                           "</div>" 
                           ); 
-                      }else{
-                        try{
-                          var progress = eval(item.progr)
-                        }
-                        catch(e){
-                          var progress = 0.1
-                        }
-
-                          for (var i = 0; i < item.imgal.length; i++) {
-                            console.log(item.imgal[i]["large"])
-                            // more statements
-                          }
-                        
+                      }else{ // AKTUELLE
+                        try{var progress = eval(item.progr)} catch(e){var progress = 0.1}
 
                           /*
                           <div class="container" style="width:400px">
