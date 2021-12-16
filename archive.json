@@ -1149,8 +1149,8 @@
     "descr": "",
     "imgur": "https://cdn.myanimelist.net/images/anime/1393/118374l.jpg",
     "semes": "21W",
-    "progr": "08/12 ",
-    "vdate": "15.12.2021",
+    "progr": "09/12 ",
+    "vdate": "22.12.2021",
     "activ": "W"
   },
   {
@@ -1161,8 +1161,8 @@
     "descr": "",
     "imgur": "https://cdn.myanimelist.net/images/anime/1321/117508l.jpg",
     "semes": "21W",
-    "progr": "08/12",
-    "vdate": "08.12.2021",
+    "progr": "09/12",
+    "vdate": "22.12.2021",
     "activ": "W"
   },
   {
@@ -1172,21 +1172,8 @@
     "tialt": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
     "descr": "",
     "imgur": "https://cdn.myanimelist.net/images/anime/1804/117641l.jpg",
-    "imgal": [{
-        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1338\/111945.jpg",
-        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1338\/111945l.jpg"
-    }, {
-        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1144\/112062.jpg",
-        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1144\/112062l.jpg"
-    }, {
-        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1804\/117641.jpg",
-        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1804\/117641l.jpg"
-    }, {
-        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1177\/118024.jpg",
-        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1177\/118024l.jpg"
-    }],
     "semes": "21W",
-    "progr": "01/??",
+    "progr": "02/??",
     "vdate": "15.12.2021",
     "activ": "W"
   },
@@ -1197,27 +1184,9 @@
     "tialt": "The Aquatope On The White Sand ",
     "descr": "",
     "imgur": "https://cdn.myanimelist.net/images/anime/1932/114952l.jpg",
-    "imgal": [{
-        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1519\/111174.jpg",
-        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1519\/111174l.jpg"
-    }, {
-        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1155\/114242.jpg",
-        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1155\/114242l.jpg"
-    }, {
-        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1932\/114952.jpg",
-        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1932\/114952l.jpg"
-    }, {
-        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1131\/117926.jpg",
-        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1131\/117926l.jpg"
-    }, {
-        "medium": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1818\/118614.jpg",
-        "large": "https:\/\/api-cdn.myanimelist.net\/images\/anime\/1818\/118614l.jpg"
-    }],
     "semes": "21S",
-    "progr": "22/24",
-    "vdate": "15.12.2021",
+    "progr": "23/24",
+    "vdate": "22.12.2021",
     "activ": "W"
-  }
-   
-   
+  }  
 ]
