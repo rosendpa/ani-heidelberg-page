@@ -48,6 +48,26 @@
     "date": "2021-12-03T17:00+01:00",
     "title": "Weihnachtsfeier",
     "type": "S"
+  },
+  {
+    "date": "2022-01-05T19:30+01:00",
+    "title": "Onlinesitzung",
+    "type": "B"
+  },
+  {
+    "date": "2022-01-12T19:30+01:00",
+    "title": "Onlinesitzung",
+    "type": "B"
+  },
+  {
+    "date": "2022-01-19T19:30+01:00",
+    "title": "Onlinesitzung",
+    "type": "B"
+  },
+  {
+    "date": "2022-01-26T19:30+01:00",
+    "title": "Onlinesitzung",
+    "type": "B"
   }
 ]
  
