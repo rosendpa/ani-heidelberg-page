@@ -6,63 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
-
-    <div class="container" style="width:400px">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://cdn.myanimelist.net/images/anime/1393/118374l.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://cdn.myanimelist.net/images/anime/1321/117508l.jpg" class="d-block w-100" alt="...">
-            </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-
-        var url = "https://api.myanimelist.net/v2/anime/30230?fields=id,title,main_picture,alternative_titles,start_date,end_date,synopsis,mean,rank,popularity,num_list_users,num_scoring_users,nsfw,created_at,updated_at,media_type,status,genres,my_list_status,num_episodes,start_season,broadcast,source,average_episode_duration,rating,pictures,background,related_anime,related_manga,recommendations,studios,statistics";
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url, true);
-
-        xhr.setRequestHeader("X-MAL-CLIENT-ID", "0df4e9ee2a76e120ba5b05acd3986aee");
-        
-        xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            console.log(xhr.status);
-            console.log(xhr.responseText);
-        }};
-
-        xhr.send();
-
-    </script>
-
     
 
+    <!-- Buttons trigger collapse -->
+<button
+class="btn btn-primary"
+type="button"
+data-mdb-toggle="collapse"
+data-mdb-target="#collapseExample"
+aria-expanded="false"
+aria-controls="collapseExample"
+>
+Button with data-mdb-target
+</button>
+
+<!-- Collapsed content -->
+<div class="collapse mt-3" id="collapseExample">
+Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt
+sapiente ea proident.
+</div>
 
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
