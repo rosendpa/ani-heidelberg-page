@@ -51,25 +51,24 @@
     width: 250px;
   }
 
-  td:hover {
-    background: #8b8b8b00;
+  .td:hover {
+    background: #00000000;
     color: rgb(0, 0, 0);
     border-radius: 2px;
-    padding: 3px;
-    box-shadow: 2px 2px 2px #b3b3b3, -1px 0 0.6em #bdbdbd;
+    box-shadow: 2px 2px 2px #b3b3b3, -1px 0 0.6em #7a7a7a;
   }
 
-  td {
-    width: 32px;
-    padding: 3px;
-    margin: 2px;
-    height: 30px;
+  .td {
+    width: 14.2%;
+    padding: 0px;
+    margin: 0px;
+    height: 28px;
     text-align: center;
     cursor: pointer;
   }
+  
 
   tr {
-    width: 32px;
     padding-top: 2px;
     padding-bottom: 2px;
     text-align: center;

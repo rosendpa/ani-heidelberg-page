@@ -154,6 +154,11 @@
     </script>
     <!-- /READ ANIME LIST/ PROGRAMM/ ARCHIV -->
 
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
+    </script>
   </head>
   
   
@@ -244,15 +249,16 @@
                               offset = 6
                             }
                             for (i=0;i<offset; i++){
-                              $("calout").append("<td colspan=1></td>")
+                              $("calout").append("<div class = 'td btn'></div>")
                             }
                         
                             //alle tage einzeln eintragen
                             let iterator = new Date(month_start)
                             do {
-                              //alle marker sammeln
+                              //alle marker für jeden tag sammeln
+                              // data-toggle='tooltip' data-placement='top' title='Toolti0p on top'
                               let string = ""
-                              string = string + "<td class ='"
+                              string = string + "<div class ='td btn "
                               if(now.getDate()>iterator.getDate()){
                                 string = string + "past "
                               }
@@ -276,7 +282,7 @@
                                 }
                               }
                              //marker eintragen
-                              string = string + "'>"+iterator.getDate()+"</td>";
+                              string = string + "' data-toggle='tooltip' data-placement='right'>"+iterator.getDate()+"</div>";
                               $("calout").append(string)
                         
                              //position testen
@@ -316,17 +322,15 @@
                                                       "</tr>"+
                                                     "</thead>"+
                                                     "<tbody>"+
-                                                      "<tr>")
-                                   
-                            if (offset>0){
-                              for (i=0;i<offset; i++){
-                                $("calout").append("<td colspan=1></td>")
-                              }
+                                                      "<tr>")                                   
+                           
+                            for (i=0;i<offset; i++){
+                              $("calout").append("<div class = 'td btn'></div>")
                             }
                             
                             do {
                               let string = ""
-                              string = string + "<td class ='"
+                              string = string + "<div class ='td btn "
                               for (var i = 0; i < schedule.length; i++) {
                                 if (schedule[i][0].getMonth() == iterator.getMonth()){
                                   if (schedule[i][0].getDate() == iterator.getDate()){
@@ -343,7 +347,7 @@
                                   }
                                 }
                               }
-                              string = string + "'>"+iterator.getDate()+"</td>";
+                              string = string + "' data-toggle='tooltip' data-placement='right'>"+iterator.getDate()+"</div>";
                               $("calout").append(string)
                         
                               offset = offset + 1
@@ -388,6 +392,10 @@
                                     }
                                   }
                                 }
+                                //activate tooltips
+                                $(function () {
+                                  $('[data-toggle="tooltip"]').tooltip()
+                                })
                                 ajaxCallBack(schedule)
                                 }
                             });
@@ -563,6 +571,32 @@
       </div>
     
 
+
+
+      <button class="td btn" data-toggle="tooltip" data-placement="top" title="Toolti0p on top">
+        Tooltip on top
+      </button>
+      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Tooltip on right">
+        Tooltip on right
+      </button>
+      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom">
+        Tooltip on bottom
+      </button>
+      <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
+        Tooltip on left
+      </button>
+
+
+
+
+
+
+
+
+
+
+
+
     <!--PRIVACY-->
     <div class="collapse" id="collapseExample1">
       <hr>
@@ -640,7 +674,9 @@
 
     <br>
 
-    
+    <script>
+      
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>
