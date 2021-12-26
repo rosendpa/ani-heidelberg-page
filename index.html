@@ -12,10 +12,7 @@
     <!-- local version of <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --> 
     <link rel="stylesheet" href="style.css">
     <title>Heidelberg Anime-Club</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
-    <link rel="manifest" href="/favicon_io/site.webmanifest">
+    <link rel="manifest" href="/favicon_io/site.webmanifest"><link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
     <!-- READ ANIME LIST/ PROGRAMM/ ARCHIV -->
     <script>
       $(function () {
@@ -39,7 +36,7 @@
                           $(".card-group").eq(sem_list.indexOf(item.semes)).append(
                           "<div class='col col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6 d-flex align-items-stretch mt-3'>" + 
                               "<div class='card' style='max-width: 18rem'>" +
-                                  "<img src='" +  item.imgur  + "' class='card-img-top' referrerpolicy='no-referrer' loading='lazy' alt='...'/>" +
+                                  "<img src='" +  item.imgur  + "' class='card-img-top' referrerpolicy='no-referrer' loading='lazy' alt='...' style = 'min-height:100px'>" +
                                   "<div class='card-body'>" + 
                                       "<div title='" + item.tialt + "'>" + "<b>" +  item.title  + "</b><br>" + "</div>" +
                                       "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
@@ -123,7 +120,7 @@
                         $("frow").eq(0).append(
                               "<div class='col col-xl-3 col-lg-3 col-md-6 d-flex align-items-stretch mt-3'>" +
                                   "<div class='card' style='max-width: 18rem;'>" +
-                                      "<img src='" +  item.imgur  + "' class='card-img-top' referrerpolicy='no-referrer' alt='...'>" +
+                                      "<img src='" +  item.imgur  + "' class='card-img-top' referrerpolicy='no-referrer' alt='...' style = 'min-height:100px'>" +
                                       "<div class='card-body'>" + 
                                           "<div title='" + item.tialt + "'>" + "<b>" +  item.title  + "</b><br>" + 
                                           "</div>" +
@@ -132,7 +129,7 @@
                                       "</div>" + 
                                       "<div class='card-footer text-md-center'>" + 
                                           "<div class='progress position-relative' style='height: 19px;'>" + 
-                                              "<div class='progress-bar bg-dark' role='progressbar' style='width: "+ progress*100 +"%' aria-valuenow='50' aria-valuemin='0' aria-valuemax='100'>"+
+                                              "<div class='progress-bar bg-dark' role='progressbar' style='width: "+ progress*100 +"%' aria-valuenow='"+ progress*100 +"' aria-valuemin='0' aria-valuemax='100'>"+
                                               "</div>"+
                                               "<medium class='justify-content-center d-flex position-absolute w-100' style='color:#808080'> <b>Folge "+ item.progr +"</b></medium>"+
                                           "</div>"+
@@ -141,7 +138,6 @@
                                   "</div>"  + 
                               "</div>" 
                         )
-                        
                       }
                   });            
                   var j;
@@ -168,10 +164,10 @@
   
   
   <body>
-    <nav class="navbar bg-dark py-0">
-      <div class="container">        
+    <nav class="navbar bg-dark py-0" id="gradient-y">
+      <div class="container " style="padding-left: 45px">        
         <a href="#" class="navbar-brand">
-          ANI Heidelberg
+          <img src="logo_header.png" alt="..." style="max-width: 95%">
         </a>
       </div>      
       <tabdiv class="container">        
@@ -199,7 +195,8 @@
           <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="container-fluid">
               <div class="row">
-                <div class="col  col-lg-2 d-none d-xl-block fixed"> <!--Sidebar-->
+                <!--Sidebar-->
+                <div class="col  col-lg-2 d-none d-xl-block fixed"> 
                   <div class="p-1 my-4 rounded-3" style="background-color: #eeeeee;">
                     <img src="logo_sidebar.png" width="100%">
                   </div>
@@ -413,16 +410,17 @@
                     <!-- /CALENDAR -->
                   </div>
                 </div>
+                <!--Willkommen-->
                 <div class="col">
                   <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
                     <h1 class="display-4">Willkommen beim Anime-Club an der Universität Heidelberg!</h1>
                     <p class="lead my-4"> Wir sind eine Hochschulgruppe, die sich dem Anime, dem Manga, dem Cosplay und der japanischen Kultur verschrieben hat. <br>
-                      Das Kernstück unserer Aktivitäten bilden unsere wöchentlichen Treffen, bei denen wir jeweils Folgen von je <a class="text-dark" href="#program">vier wechselnden Anime</a> auf Leinwand mit Heimkinoatmosphäre schauen. Im Anschluss folgt eine Diskussionsrunde, bei der die Qualität der Serien, kulturelle und gesellschaftliche Aspekte, Produktion und vieles mehr in lockerer Atmosphäre besprochen werden. 
+                    Das Kernstück unserer Aktivitäten bilden unsere wöchentlichen Treffen, bei denen wir jeweils Folgen von je <a class="text-dark" href="#program">vier wechselnden Anime</a> auf Leinwand mit Heimkinoatmosphäre schauen. Im Anschluss folgt eine freie Diskussion, bei der die Qualität der Serien, kulturelle und gesellschaftliche Aspekte, Produktion und vieles mehr in lockerer Atmosphäre besprochen werden. 
                     </p>
                     <p class="lead my-4">
-                      Bei der Auswahl der Serien achten wir auf eine ausgewogene Mischung aus verschiedenen Genres (Comedy, Drama, Action, Science-Fiction, ...).<br>
-                      Bei Gelegenheit führen wir auch Sonderaktionen durch (z.B. gemeinsame Besuche von Conventions, Hanami auf der Neckarwiese).
-                      Wir sind zwar eine Hochschulgruppe, doch auch Nicht-Studierende sind herzlich willkommen. Eine vorherige Anmeldung ist nicht nötig.
+                    Bei der Auswahl der Serien achten wir auf eine ausgewogene Mischung aus verschiedenen Genres (Comedy, Drama, Action, Science-Fiction, ...).<br>
+                    Bei Gelegenheit führen wir auch Sonderaktionen durch (z.B. gemeinsame Besuche von Conventions, Hanami auf der Neckarwiese).
+                    Wir sind zwar eine Hochschulgruppe, doch auch Nicht-Studierende sind herzlich willkommen. Eine vorherige Anmeldung ist nicht nötig.
                     </p>
 
                     <!-- HYBRID ANKUENDIGUNG
@@ -434,11 +432,11 @@
                       </div>-->
                     <!-- ONLINE ANKUENDIGUNG -->
                     <div class="alert alert-danger" role="alert">
-                      <b> Wegen der SARS-CoV-2-Pandemie und Ausrufung der Alarmstufe II wurde entschieden, für die restlichen Treffen dieses Jahr, beginnend mit dem 01.12.2021, vom Hybridformat in das reine Online-Format auf Discord zu wechseln. (Stand: 28.11.2021)</b>
+                      <b> Wegen der SARS-CoV-2-Pandemie und Ausrufung der Alarmstufe II wurde entschieden, bis auf weiteres, beginnend mit dem 01.12.2021, vom Hybridformat in das reine Online-Format auf Discord zu wechseln. (Stand: 26.12.2021)</b>
                       An einer Online-Teilnahme Interessierte sind gerne eingeladen sich für weitere Informationen und Zugangsdaten zu melden. 
                     </div>
-
-                    <blockquote class="blockquote">
+                    
+                    <blockquote class="lead">
                       Wer sich im Voraus anmelden möchte, weitere Fragen oder gar persönliche Bedenken hat, kann gerne eine Nachricht an uns schreiben: <br>
                       Kontakt: <b><a class="text-dark" href="mailto:ani-heidelberg@stura.uni-heidelberg.de">ani-heidelberg@stura.uni-heidelberg.de</a></b> 
                     </blockquote>
@@ -505,20 +503,16 @@
               <p> Eine Karte mit dem Treffpunkt ist unten zu sehen!
               Die Räume des StuRa erreicht ihr mit RNV z.B. gut über die Haltestelle Brückenstraße. Diese wird durch die Linien 31, 23 und 5 bedient. Wenn man etwas Fußmarsch in Kauf nimmt, ist der Ort auch gut vom Bismarckplatz aus erreichbar. In der näheren Umgebung sollte es auch genügend Möglichkeiten zum Abstellen von Fahrrädern geben. Wenn ihr das Gebäude erreicht habt, müsst ihr, um zu den Räumlichkeiten des Stura zu gelangen, den Nebeneingang rechts (nicht den Haupteingang mit der Treppe links!) nehmen. Durch den Eingang gelangt ihr direkt in die Küche. Von dort müsst ihr links eine Treppe hinunter, euch im nächsten Raum links halten zur nächsten Tür durchlaufen. Dann habt ihr euer Ziel erreicht.<br>
               Solltet ihr es nicht finden, könnt ihr auch einfach von draußen ans Fenster klopfen, dann holt euch einer ab (von der Straße der erste Raum links, Beamer hängt gut sichtbar an der Decke). Sollte es noch Fragen zu den Örtlichkeiten oder der Anreise geben, kann man uns einfach via der angegeben Mail-Adresse erreichen. Auch an dem Tag selber sind wir via E-Mail erreichbar.</p>
-              
-
-              <div class="card my-4" id="consentframe" style="width:100%;height:400px;">
+              <div class="card my-4 p-4" id="consentframe" style="width:100%;height:400px;">
                 <div class="card-body">
                   <h5 class="card-title">Deine Zustimmung ist erforderlich.</h5>
                   <p class="card-text">
-                    Mit dem Aufruf der Karte erklärst Du Dich einverstanden, dass Deine Daten an Google übermittelt werden. Wir haben darauf keinen Einfluss. <br>Weitere Informationen dazu sind zu finden in der <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"> Datenschutzerklärung</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a></p>
+                    Mit dem Aufruf der Karte erklärst Du Dich einverstanden, dass Deine Daten an Google übermittelt werden. Wir haben darauf keinen Einfluss.<br>Weitere Informationen dazu sind zu finden in unserer <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"> Datenschutzerklärung</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a></p>
                   <a id="mapbutton" type="button" class="btn btn-primary">Zustimmen</a>
                 </div>
               </div>
-
-              <iframe width="100%" class="hidden" id="mapframe" height ="400px" style="border:0" padding=10px loading="lazy"  src="about:blank" allowfullscreen
-              data-src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJo4HlHRrBl0cROIhz7ZR9k94&key=AIzaSyASpjN5oCxnx9Qop0tiGctlzJJ5lYE-1ec"></iframe>
-              <script>
+              <iframe width="100%" class="hidden" id="mapframe" height ="400px" style="border:0" padding=10px loading="lazy"  src="about:blank" allowfullscreen data-src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJo4HlHRrBl0cROIhz7ZR9k94&key=AIzaSyASpjN5oCxnx9Qop0tiGctlzJJ5lYE-1ec"></iframe>
+              <script>//Zustimmung abwarten
                 const iframe = document.getElementById("mapframe");
                 const iframe2 = document.getElementById("consentframe");
                 document.getElementById("mapbutton").addEventListener("click", function() {

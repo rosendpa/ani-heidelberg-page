@@ -3,12 +3,17 @@
   { 
     top:00;
     font-size: 48px;
+    height:95px
   }
   
   .nav {
       position:absolute;
       bottom:00;
-      right:20%;
+      right:15%;
+  }
+
+  #gradient-y{
+    background-image: linear-gradient(to bottom, rgb(104, 104, 104),rgb(29, 29, 29));
   }
 
 /* Viewport breite fuer navtab wrapping */
