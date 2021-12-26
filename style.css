@@ -32,6 +32,10 @@
     display: inline-flex; 
   }
 
+  .hidden {
+    display: none; 
+    visibility:hidden
+  }
 
 /* CALENDAR */
   calendar {
