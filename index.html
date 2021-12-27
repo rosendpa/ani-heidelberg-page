@@ -36,7 +36,7 @@
                   });
 
 
-                  $(".stat").append('<p class="lead my-4"> Seit der Gründung unseres Clubs im November 2013 haben wir insgesamt '+ sum_folgen + ' Folgen angesehen und '+ sum_serien +' Serien/Seasons abgeschlossen. <br> Auf dieser Seite sind alle Serien aus dieser Zeit festgehalten, und geben einen Einblick in den Wandel der Serien und die Geschmäcker der Mitglieder.</p>')
+                  $(".stat").append('<p class="my-4"> Seit der Gründung unseres Clubs im November 2013 haben wir insgesamt <b>'+ sum_folgen + ' Folgen</b> angesehen und <b>'+ sum_serien +' Serien/Seasons</b> abgeschlossen. </p><p> Auf dieser Seite sind alle Serien aus dieser Zeit festgehalten, und geben einen Einblick sowohl in den Wandel der Serien als auch den Geschmack der Mitglieder.</p>')
 
                   //liste aller semester
                   let sem_list = [...new Set(tmp)]
@@ -55,7 +55,7 @@
                                     "</div>" +
                                     "<div class ='title_en hidden'>" + "<b>" +  item.titen  + "</b><br>" + 
                                     "</div>" +
-                                    "<medium class='text-muted'>"+item.theme+"</small><br>"+
+                                    "<div class='small text-muted' style='padding-top:10px;'>"+item.theme+"</div>"+
                                     "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
                                     "<p class='card-text'> </p>" + 
                                   "</div>" + 
@@ -146,7 +146,7 @@
                                           "</div>" +
                                           "<div class ='title_en hidden'>" + "<b>" +  item.titen  + "</b><br>" + 
                                           "</div>" +
-                                          "<medium class='text-muted'>"+item.theme+"</small><br>"+
+                                          "<div class='small text-muted' style='padding-top:10px;'>"+item.theme+"</div>"+
                                           "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
                                           "<p class='card-text'> </p>" + 
                                         "</div>" + 
@@ -172,7 +172,7 @@
                       }else{
                           ntp = "Sommersemester 20" + sem_list[j].slice(0,2) 
                       }
-                      $(".separator").eq(j).append("<br><br><h3> Serien aus dem "+ntp+" <span class='badge bg-secondary'></span></h3>")
+                      $(".separator").eq(j).append("<hr><br><h3> Serien aus dem "+ntp+" <span class='badge bg-secondary'></span></h3>")
                   }        
               }
           });
@@ -562,20 +562,9 @@
               <!-- local version of <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  -->
               <!--Alle Semester anzeigen--> 
               <div class="container-fluid">
-                <h1>Archiv aller beendeter Serien</h1>
-
-                
+                <h2>Archiv der abgeschlossenen Serien</h2>
 
                 <div class="stat"></div>
-
-
-
-                <div class="separator"></div>
-                <div class="card-group"></div>
-                <div class="separator"></div>
-                <div class="card-group"></div>
-                <div class="separator"></div>
-                <div class="card-group"></div>
                 <div class="separator"></div>
                 <div class="card-group"></div>
                 <div class="separator"></div>
