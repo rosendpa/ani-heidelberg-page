@@ -37,8 +37,9 @@
   }
 
   .hidden {
-    display: none; 
+     display: none; /*   */
     visibility:hidden
+
   }
 
 /* CALENDAR */
@@ -111,3 +112,5 @@
   .today {
     color: rgb(255, 0, 0);
   }
+
+

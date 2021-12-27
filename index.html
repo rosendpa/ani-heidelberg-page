@@ -24,7 +24,7 @@
                   
                   let tmp = []
                   $.each(result, function (index, item) {
-                      if (item.activ !== "W"){
+                      if (item.statu !== "W"){
                           tmp.push(item.semes)
                       }
                   });
@@ -32,15 +32,20 @@
                   sem_list.sort().reverse()
 
                   $.each(result, function (index, item) {
-                      if (item.activ !== "W"){ //ALTE
+                      if (item.statu !== "W"){ //ALTE
                           $(".card-group").eq(sem_list.indexOf(item.semes)).append(
                           "<div class='col col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6 d-flex align-items-stretch mt-3'>" + 
                               "<div class='card' style='max-width: 18rem'>" +
-                                  "<img src='" +  item.imgur  + "' class='card-img-top' referrerpolicy='no-referrer' loading='lazy' alt='...' style = 'min-height:100px'>" +
+                                  "<img src='" +  item.imurl  + "' class='card-img-top' referrerpolicy='no-referrer' loading='lazy' alt='...' style = 'min-height:100px'>" +
                                   "<div class='card-body'>" + 
-                                      "<div title='" + item.tialt + "'>" + "<b>" +  item.title  + "</b><br>" + "</div>" +
-                                      "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
-                                      "<p class='card-text'> </p>" + 
+                                    "<div class ='title_jp hidden' title='" + item.title + "'>" + "<b>" +  item.titjp  + "</b><br>" + 
+                                    "</div>" +
+                                    "<div class ='title_ro'>" + "<b>" +  item.title  + "</b><br>" + 
+                                    "</div>" +
+                                    "<div class ='title_en hidden'>" + "<b>" +  item.titen  + "</b><br>" + 
+                                    "</div>" +
+                                    "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
+                                    "<p class='card-text'> </p>" + 
                                   "</div>" + 
                                   "<div class='card-footer'>" + 
                                       "<small class='text-muted'> Bis einschließlich Folge <b>"+ item.progr +"</b> am "+item.vdate+"</small>" + 
@@ -118,25 +123,31 @@
 
                         /* ORIGINAL*/
                         $("frow").eq(0).append(
-                              "<div class='col col-xl-3 col-lg-3 col-md-6 d-flex align-items-stretch mt-3'>" +
-                                  "<div class='card' style='max-width: 18rem;'>" +
-                                      "<img src='" +  item.imgur  + "' class='card-img-top' referrerpolicy='no-referrer' alt='...' style = 'min-height:100px'>" +
+                                  "<div class='col col-xl-3 col-lg-3 col-md-6 d-flex align-items-stretch mt-3'>" +
+                                    "<div class='card' style='max-width: 18rem;'>" +
+                                      "<img src='" +  item.imurl  + "' class='card-img-top' referrerpolicy='no-referrer' alt='...' style = 'min-height:100px'>" +
                                       "<div class='card-body'>" + 
-                                          "<div title='" + item.tialt + "'>" + "<b>" +  item.title  + "</b><br>" + 
+                                        "<div container-fluid>" +
+                                          "<div class ='title_jp hidden' title='" + item.title + "'>" + "<b>" +  item.titjp  + "</b><br>" + 
+                                          "</div>" +
+                                          "<div class ='title_ro'>" + "<b>" +  item.title  + "</b><br>" + 
+                                          "</div>" +
+                                          "<div class ='title_en hidden'>" + "<b>" +  item.titen  + "</b><br>" + 
                                           "</div>" +
                                           "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
                                           "<p class='card-text'> </p>" + 
+                                        "</div>" + 
                                       "</div>" + 
                                       "<div class='card-footer text-md-center'>" + 
-                                          "<div class='progress position-relative' style='height: 19px;'>" + 
-                                              "<div class='progress-bar bg-dark' role='progressbar' style='width: "+ progress*100 +"%' aria-valuenow='"+ progress*100 +"' aria-valuemin='0' aria-valuemax='100'>"+
-                                              "</div>"+
-                                              "<medium class='justify-content-center d-flex position-absolute w-100' style='color:#808080'> <b>Folge "+ item.progr +"</b></medium>"+
+                                        "<div class='progress position-relative' style='height: 19px;'>" + 
+                                          "<div class='progress-bar bg-dark' role='progressbar' style='width: "+ progress*100 +"%' aria-valuenow='"+ progress*100 +"' aria-valuemin='0' aria-valuemax='100'>"+
                                           "</div>"+
-                                          "<small class='text-muted'>bis einschließlich <u>" + item.vdate + "</u></small>"+
+                                          "<medium class='justify-content-center d-flex position-absolute w-100' style='color:#808080'> <b>Folge "+ item.progr +"</b></medium>"+
+                                        "</div>"+
+                                        "<small class='text-muted'>bis einschließlich <u>" + item.vdate + "</u></small>"+
                                       "</div>" + 
-                                  "</div>"  + 
-                              "</div>" 
+                                    "</div>"  + 
+                                  "</div>" 
                         )
                       }
                   });            
@@ -479,7 +490,7 @@
                         </noscript>
                       </blockquote>
                       </p>
-                      <h2 id="program">Aktuelles Programm:</h2>
+                      <h2 id="program">Aktuelles Programm:</h2> 
                       <script src="res/jquery-3.3.1.min.js"></script>
                       <!-- local version of <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  -->
                       <frow class="row my-1 row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 align-items-stretch">
@@ -494,7 +505,6 @@
 
           <!-- INFO TAB -->
           <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
-          
             <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
               <h5>Warum Anime?</h5>
               <p>Anime und vor allem Manga sind ein fester Bestandteil japanischen Kultur. In Japan lassen sich die Vorläufer dieser Tradition bis ins 8. Jahrhundert zurückverfolgen. Aus Japan kommen auch heute noch die meisten Anime und Manga. Nach dem zweiten Weltkrieg verbreiteten sich Anime auch über Asien hinaus und erfreuen sich zunehmender Beliebtheit vor allem in den USA und Großbritannien. <br>
@@ -515,16 +525,15 @@
               <script>//Zustimmung abwarten
                 const iframe = document.getElementById("mapframe");
                 const iframe2 = document.getElementById("consentframe");
+                const icard = document.getElementsByClassName("col")[0];
                 document.getElementById("mapbutton").addEventListener("click", function() {
                   iframe.classList.toggle("hidden");
                   iframe2.classList.toggle("hidden");
+                  icard.classList.toggle("hidden");
                   iframe.setAttribute("src", iframe.getAttribute("data-src"))
                 });
               </script>
-              
             </div>   
-         
-          
           </div>
           <!-- /INFO TAB -->
 
@@ -592,9 +601,59 @@
         </div>
       </div>
     
+      <a id="title_change_button" class="hidden" type="button" class="btn btn-primary">Titelsprache ändern</a>
+
+      <script>//Zustimmung abwarten
+        const list_jp = document.getElementsByClassName("title_jp");
+        const list_en = document.getElementsByClassName("title_en");
+        const list_ro = document.getElementsByClassName("title_ro");
+
+        //auto
+        window.setInterval(function() {
+          for (var i = 0; i < list_jp.length; i++) {
+            window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40)
+            window.setTimeout("list_jp["+i+"].classList.toggle('hidden');", i*40)
+            
+            window.setTimeout("list_jp["+i+"].classList.toggle('hidden');", i*40+8000)
+            window.setTimeout("list_en["+i+"].classList.toggle('hidden');", i*40+8000)
+
+            window.setTimeout("list_en["+i+"].classList.toggle('hidden');", i*40+18000)
+            window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40+18000)
+          }
+        }, 36000);
+
+        //auf knopfdruck
+        document.getElementById("title_change_button").addEventListener("click", function() {
+          for (var i = 0; i < list_jp.length; i++) {
+            if(list_en[i].classList.contains('hidden')){}else{
+              window.setTimeout("list_en["+i+"].classList.toggle('hidden');", i*40)
+              window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40)
+            }
+            if(list_jp[i].classList.contains('hidden')){}else{
+              window.setTimeout("list_jp["+i+"].classList.toggle('hidden');", i*40)
+              window.setTimeout("list_en["+i+"].classList.toggle('hidden');", i*40)
+            }
+            if(list_ro[i].classList.contains('hidden')){}else{
+              window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40)
+              window.setTimeout("list_jp["+i+"].classList.toggle('hidden');", i*40)
+            }
+          }
+        });
+
+        
+
+      </script>
+
+
+
+
+
+
+
+
 
       <!--PRIVACY-->
-      <div class="collapse" id="collapseExample1">
+      <div class="collapse" id="collapse_priv">
         <hr>
         <div class="container-fluid p-4 my-4 rounded-3" style="background-color: #eeeeee;">
           <div class="overflow-auto" style="height: 600px;">
@@ -658,10 +717,10 @@
             </p>
           </div>
           <div class="col-md-6 text-md-end">
-            <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+            <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapse_priv" aria-expanded="false" aria-controls="collapse_priv">
               Impressum</a>
             <span class="text-muted mx-2">|</span>
-            <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1">
+            <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapse_priv" aria-expanded="false" aria-controls="collapse_priv">
               Datenschutzerklärung</a>
           </div>
         </div>
