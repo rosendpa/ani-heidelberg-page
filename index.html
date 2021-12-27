@@ -21,13 +21,24 @@
               cache: false, 
               //async: false, // <- this turns it into synchronous
               success: function (result) {
-                  
+                  let sum_folgen = 0
+                  let sum_serien = 0
                   let tmp = []
                   $.each(result, function (index, item) {
                       if (item.statu !== "W"){
-                          tmp.push(item.semes)
+                          tmp.push(item.semes) //liste aller semester
                       }
+                      if (item.statu == "F"){
+                          sum_serien++ //Zahl der beendeten Seasons
+                      }
+                      //Zahl der gesehenen Folgen
+                      sum_folgen = sum_folgen + eval(item.progr.substring(0, 2))
                   });
+
+
+                  $(".stat").append('<p class="lead my-4"> Seit der Gründung unseres Clubs im November 2013 haben wir insgesamt '+ sum_folgen + ' Folgen angesehen und '+ sum_serien +' Serien/Seasons abgeschlossen. <br> Auf dieser Seite sind alle Serien aus dieser Zeit festgehalten, und geben einen Einblick in den Wandel der Serien und die Geschmäcker der Mitglieder.</p>')
+
+                  //liste aller semester
                   let sem_list = [...new Set(tmp)]
                   sem_list.sort().reverse()
 
@@ -44,6 +55,7 @@
                                     "</div>" +
                                     "<div class ='title_en hidden'>" + "<b>" +  item.titen  + "</b><br>" + 
                                     "</div>" +
+                                    "<medium class='text-muted'>"+item.theme+"</small><br>"+
                                     "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
                                     "<p class='card-text'> </p>" + 
                                   "</div>" + 
@@ -175,6 +187,9 @@
   
   
   <body>
+
+    <div class="stat"></div>
+    <div class="stat"></div>
     <nav class="navbar bg-dark py-0" id="gradient-y">
       <div class="container " style="padding-left: 45px">        
         <a href="#" class="navbar-brand">
@@ -540,10 +555,23 @@
           <!-- ARCHIVE TAB -->
           <div class="tab-pane fade" id="archive" role="tabpanel" aria-labelledby="archive-tab">
             <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
+
+              
+
+
+
               <script src="res/jquery-3.3.1.min.js"></script>
               <!-- local version of <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  -->
               <!--Alle Semester anzeigen--> 
               <div class="container-fluid">
+                <h1>Archiv aller beendeter Serien</h1>
+
+                <p>
+
+                </p>
+
+
+
                 <div class="separator"></div>
                 <div class="card-group"></div>
                 <div class="separator"></div>
