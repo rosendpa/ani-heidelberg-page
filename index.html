@@ -3,6 +3,22 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYLDQ6GXZ5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZYLDQ6GXZ5');
+    </script> -->
+    
+
+
+
+
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,73 +83,6 @@
                           ); 
                       }else{ // AKTUELLE
                         try{var progress = eval(item.progr)} catch(e){var progress = 0.1}
-
-                          /*
-                          <div class="container" style="width:400px">
-                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="https://cdn.myanimelist.net/images/anime/1393/118374l.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="https://cdn.myanimelist.net/images/anime/1321/117508l.jpg" class="d-block w-100" alt="...">
-                                </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                          </div>
-                          
-                        var act = "active"
-                        var carss = ""
-                        for (var i = 0; i < item.imgal.length; i++) {
-                          carss = carss + (
-                            '<div class="carousel-item '+act+'">'+
-                                    '<img src="' + item.imgal[i]["large"] + '" class="w-10 card-img-top" alt="..." style="width: 200px">'+
-                                '</div>')
-                          act = ""
-                        }
-
-                        $("frow").eq(0).append(
-                              "<div class='col col-xl-3 col-lg-3 col-md-6 d-flex align-items-stretch mt-3'>" +
-                                  "<div class='card' style='width: 200px'>"+
-                                      '<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"style="width: 200px">'+
-                                        '<div class="carousel-inner">'+carss+
-                              '</div>'+
-                              '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">'+
-                                '<span class="carousel-control-prev-icon" aria-hidden="true"></span>'+
-                                '<span class="visually-hidden">Previous</span>'+
-                              '</button>'+
-                              '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">'+
-                                '<span class="carousel-control-next-icon" aria-hidden="true"></span>'+
-                                '<span class="visually-hidden">Next</span>'+
-                              '</button>'+
-                            '</div>'+
-                                      "<div class='card-body'>" + 
-                                          "<div title='" + item.tialt + "'>" + "<b>" +  item.title  + "</b><br>" + 
-                                          "</div>" +
-                                          "<a href='https://myanimelist.net/anime/"+ item.malid +"' target='_blank'><small class='text-muted'>>Details auf MAL</small></a>" +
-                                          "<p class='card-text'> </p>" + 
-                                      "</div>" + 
-                                      "<div class='card-footer text-md-center'>" + 
-                                          "<div class='progress position-relative' style='height: 19px;'>" + 
-                                              "<div class='progress-bar bg-dark' role='progressbar' style='width: "+ progress*100 +"%' aria-valuenow='50' aria-valuemin='0' aria-valuemax='100'>"+
-                                              "</div>"+
-                                              "<medium class='justify-content-center d-flex position-absolute w-100' style='color:#808080'> <b>Folge "+ item.progr +"</b></medium>"+
-                                          "</div>"+
-                                          "<small class='text-muted'>bis einschließlich <u>" + item.vdate + "</u></small>"+
-                                      "</div>" + 
-                                  "</div>"  + 
-                              "</div>" 
-                        )*/
-
-                        /* ORIGINAL*/
                         $("frow").eq(0).append(
                                   "<div class='col col-xl-3 col-lg-3 col-md-6 d-flex align-items-stretch mt-3'>" +
                                     "<div class='card' style='max-width: 18rem;'>" +
@@ -618,14 +567,108 @@
         </div>
       </div>
     
+
+      <a id="cookie_consent_revoke" type="button" class=" btn btn-secondary cc-revoke">Cookies löschen</a>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" data-cfasync="false"></script>
+      <script>
+        var popup;
+        window.addEventListener('load', function(){
+          window.cookieconsent.initialise({
+          //set revokeBtn if you don't want to see a tiny pullup bar overlapping your website
+          //if revokeBtn is set, make sure to include a link to cookie settings in your footer
+          //you can open your banner again with: popup.open();
+          //revokeBtn: "<div class='cc-revoke'></div>",
+          type: "opt-in",
+          theme: "classic",
+          palette: {
+              popup: {
+                  background: "#000",
+                  text: "#fff"
+                },
+              button: {
+                  background: "#fd0",
+                  text: "#000"
+                }
+            },
+            onInitialise: function(status) {
+              // request gtag.js on page-load when the client already consented
+              if(status == cookieconsent.status.allow) setCookies();
+            },
+            onStatusChange: function(status) {
+              // resquest gtag cookies on a new consent
+              if (this.hasConsented()) setCookies();
+              else deleteCookies(this.options.cookie.name)
+            },
+            /* enable this to hide the cookie banner outside GDPR regions
+            law: {
+              regionalLaw: false,
+            },
+            location: true,
+            },
+            */
+           
+            function (p) {
+                popup = p;
+          }})
+        });
+
+        //it is absolutely crucial to define gtag in the global scope
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZYLDQ6GXZ5', {'anonymize_ip': true});
+
+        function setCookies() {
+            var s = document.createElement('script');
+            s.type = "text/javascript"
+            s.async = "true";
+            s.src = "https://www.googletagmanager.com/gtag/js?id=G-ZYLDQ6GXZ5";
+            var x = document.getElementsByTagName('script')[0];
+            x.parentNode.insertBefore(s, x);
+
+            // you can add facebook-pixel and other cookies here
+        };
+
+        function deleteCookies(cookieconsent_name) {
+                var keep = [cookieconsent_name, "DYNSRV"];
+
+                document.cookie.split(';').forEach(function(c) {
+                    c = c.split('=')[0].trim();
+                    if (!~keep.indexOf(c))
+                        document.cookie = c + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';
+                });
+        };
+
+        
+      </script>
+      <script>
+        document.getElementById("cookie_consent_revoke").addEventListener("click", function() {
+          this.revokeChoice()
+        })
+      </script>
+
+
+
+
+
+
+
+
+
+
+
+
       <a id="title_change_button" type="button" class="btn btn-secondary">Titelsprache ändern</a>
+      
 
       <script>//Zustimmung abwarten
         const list_jp = document.getElementsByClassName("title_jp");
         const list_en = document.getElementsByClassName("title_en");
         const list_ro = document.getElementsByClassName("title_ro");
 
-        //auto
+        //auto 
+        /*
         window.setInterval(function() {
           for (var i = 0; i < list_jp.length; i++) {
             window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40)
@@ -637,7 +680,7 @@
             window.setTimeout("list_en["+i+"].classList.toggle('hidden');", i*40+18000)
             window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40+18000)
           }
-        }, 36000);
+        }, 36000);*/
 
         //auf knopfdruck
         document.getElementById("title_change_button").addEventListener("click", function() {
@@ -656,9 +699,6 @@
             }
           }
         });
-
-        
-
       </script>
 
 
@@ -714,6 +754,7 @@
             <h3>Server-Log-Dateien</h3> <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:</p> <ul> <li>Browsertyp und Browserversion</li> <li>verwendetes Betriebssystem</li> <li>Referrer URL</li> <li>Hostname des zugreifenden Rechners</li> <li>Uhrzeit der Serveranfrage</li> <li>IP-Adresse</li> </ul> <p>Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p> <p>Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website &ndash; hierzu müssen die Server-Log-Files erfasst werden.</p>
             <h3>Anfrage per E-Mail, Telefon oder Telefax</h3> <p>Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p> <p>Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde.</p> <p>Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.&nbsp;B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende gesetzliche Bestimmungen &ndash; insbesondere gesetzliche Aufbewahrungsfristen &ndash; bleiben unberührt.</p>
             <h2>5. Plugins und Tools</h2>
+            <h3>Nutzung von Google Analytics</h3><p>Wir verwenden Google Analytics, um die Website-Nutzung zu analysieren. Die daraus gewonnenen Daten werden genutzt, um unsere Website sowie Werbemaßnahmen zu optimieren.Google Analytics ist ein Webanalysedienst, der von Google Inc. (1600 Amphitheatre Parkway, Mountain View, CA 94043, United States) betrieben und bereitgestellt wird. Google verarbeitet die Daten zur Website-Nutzung in unserem Auftrag und verpflichtet sich vertraglich zu Maßnahmen, um die Vertraulichkeit der verarbeiteten Daten zu gewährleisten.<br>Während Ihres Website-Besuchs werden u.a. folgende Daten aufgezeichnet:</p><p>Aufgerufene Seiten<br>Ihr Verhalten auf den Seiten (beispielsweise Klicks, Scroll-Verhalten und Verweildauer)<br>Ihr ungefährer Standort (Land und Stadt)<br>Ihre IP-Adresse (in gekürzter Form, sodass keine eindeutige Zuordnung möglich ist)<br>Technische Informationen wie Browser, Internetanbieter, Endgerät und Bildschirmauflösung<br>Herkunftsquelle Ihres Besuchs (d.h. über welche Website bzw. über welches Werbemittel Sie zu uns gekommen sind)<br>Diese Daten werden an einen Server von Google in den USA übertragen. </p><p>Google Analytics speichert Cookies in Ihrem Webbrowser für die Dauer von zwei Jahren seit Ihrem letzten Besuch. Diese Cookies enthaltene eine zufallsgenerierte User-ID, mit der Sie bei zukünftigen Website-Besuchen wiedererkannt werden können. Die aufgezeichneten Daten werden zusammen mit der zufallsgenerierten User-ID gespeichert, was die Auswertung pseudonymer Nutzerprofile ermöglicht. Diese nutzerbezogenen Daten werden automatisch nach 14 Monaten gelöscht. Sonstige Daten bleiben in aggregierter Form unbefristet gespeichert. Sollten Sie mit der Erfassung nicht einverstanden sein, können Sie diese mit der einmaligen Installation des Browser-Add-ons zur Deaktivierung von Google Analytics unterbinden oder durch das Ablehnen der Cookies über unseren Cookie Einstellungs Dialog.</p>
             <h3>Google Web Fonts</h3> <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Web Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Web Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen. Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse unsere Website aufgerufen wurde. Die Nutzung von Google Web Fonts erfolgt im Interesse einer einheitlichen und ansprechenden Darstellung unserer Online-Angebote. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Wenn Ihr Browser Web Fonts nicht unterstützt, wird ggf. eine lokale Schriftart von Ihrem Computer genutzt.</p> <p>Weitere Informationen zu Google Web Fonts finden Sie unter <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener noreferrer">https://developers.google.com/fonts/faq</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a>.</p>
             <h3>MyAnimeList</h3> <p> Seite bindet Thumbnails von der Seite myanimelist.net ein. Anbieter der Seite ist die MyAnimeList Co., Ltd. , 1-1-1 Hitotsubashi Chiyoda-ku, Tokyo 100-0003 Japan. Zur Nutzung ist es notwendig, Ihre IP-Adresse zu übertragen.  Diese Informationen werden in der Regel an einen Server in den USA und/oder Japan übertragen und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung. </p>
             <p>Die Nutzung von Bildern erfolgt im Interesse einer ansprechenden Darstellung unserer Inhalte. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. </p>
