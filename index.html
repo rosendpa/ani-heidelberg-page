@@ -3,22 +3,6 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZYLDQ6GXZ5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-ZYLDQ6GXZ5');
-    </script> -->
-    
-
-
-
-
-
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -133,6 +117,93 @@
         $('[data-toggle="tooltip"]').tooltip()
       })
     </script>
+    
+    
+    
+    <!-- Google Analytics
+     
+ ​      ​<​a​ ​id​="​cookie_consent_revoke​" ​type​="​button​" ​class​="​ btn btn-secondary cc-revoke​"​>​Cookies löschen​</​a​> 
+ ​      ​<​link​ ​rel​="​stylesheet​" ​type​="​text/css​" ​href​="​https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css​" /> 
+ ​      ​<​script​ ​src​="​https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js​" ​data-cfasync​="​false​"​>​</​script​> 
+ ​      ​<​script​> 
+ ​        ​var​ ​popup​; 
+ ​        ​window​.​addEventListener​(​'load'​,​ ​function​(​)​{ 
+ ​          ​window​.​cookieconsent​.​initialise​(​{ 
+ ​          ​//set revokeBtn if you don't want to see a tiny pullup bar overlapping your website 
+ ​          ​//if revokeBtn is set, make sure to include a link to cookie settings in your footer 
+ ​          ​//you can open your banner again with: popup.open(); 
+ ​          ​//revokeBtn: "<div class='cc-revoke'></div>", 
+ ​          ​type​: ​"opt-in"​, 
+ ​          ​theme​: ​"classic"​, 
+ ​          ​palette​: ​{ 
+ ​              ​popup​: ​{ 
+ ​                  ​background​: ​"#000"​, 
+ ​                  ​text​: ​"#fff" 
+ ​                ​}​, 
+ ​              ​button​: ​{ 
+ ​                  ​background​: ​"#fd0"​, 
+ ​                  ​text​: ​"#000" 
+ ​                ​} 
+ ​            ​}​, 
+ ​            ​onInitialise​: ​function​(​status​)​ ​{ 
+ ​              ​// request gtag.js on page-load when the client already consented 
+ ​              ​if​(​status​ ​==​ ​cookieconsent​.​status​.​allow​)​ ​setCookies​(​)​; 
+ ​            ​}​, 
+ ​            ​onStatusChange​: ​function​(​status​)​ ​{ 
+ ​              ​// resquest gtag cookies on a new consent 
+ ​              ​if​ ​(​this​.​hasConsented​(​)​)​ ​setCookies​(​)​; 
+ ​              ​else​ ​deleteCookies​(​this​.​options​.​cookie​.​name​) 
+ ​            ​}​, 
+ ​            ​/* enable this to hide the cookie banner outside GDPR regions 
+ ​            law: { 
+ ​              regionalLaw: false, 
+ ​            }, 
+ ​            location: true, 
+ ​            }, 
+ ​            */ 
+ ​            
+ ​            ​function​ ​(​p​)​ ​{ 
+ ​                ​popup​ ​=​ ​p​; 
+ ​          ​}​}​) 
+ ​        ​}​)​; 
+  
+ ​        ​//it is absolutely crucial to define gtag in the global scope 
+ ​        ​window​.​dataLayer​ ​=​ ​window​.​dataLayer​ ​||​ ​[​]​; 
+ ​        ​function​ ​gtag​(​)​{​dataLayer​.​push​(​arguments​)​;​} 
+ ​        ​gtag​(​'js'​,​ ​new​ ​Date​(​)​)​; 
+ ​        ​gtag​(​'config'​,​ ​'G-ZYLDQ6GXZ5'​,​ ​{​'anonymize_ip'​: ​true​}​)​; 
+  
+ ​        ​function​ ​setCookies​(​)​ ​{ 
+ ​            ​var​ ​s​ ​=​ ​document​.​createElement​(​'script'​)​; 
+ ​            ​s​.​type​ ​=​ ​"text/javascript" 
+ ​            ​s​.​async​ ​=​ ​"true"​; 
+ ​            ​s​.​src​ ​=​ ​"https://www.googletagmanager.com/gtag/js?id=G-ZYLDQ6GXZ5"​; 
+ ​            ​var​ ​x​ ​=​ ​document​.​getElementsByTagName​(​'script'​)​[​0​]​; 
+ ​            ​x​.​parentNode​.​insertBefore​(​s​,​ ​x​)​; 
+  
+ ​            ​// you can add facebook-pixel and other cookies here 
+ ​        ​}​; 
+  
+ ​        ​function​ ​deleteCookies​(​cookieconsent_name​)​ ​{ 
+ ​                ​var​ ​keep​ ​=​ ​[​cookieconsent_name​,​ ​"DYNSRV"​]​; 
+  
+ ​                ​document​.​cookie​.​split​(​';'​)​.​forEach​(​function​(​c​)​ ​{ 
+ ​                    ​c​ ​=​ ​c​.​split​(​'='​)​[​0​]​.​trim​(​)​; 
+ ​                    ​if​ ​(​!​~​keep​.​indexOf​(​c​)​) 
+ ​                        ​document​.​cookie​ ​=​ ​c​ ​+​ ​'=;'​ ​+​ ​'expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/'​; 
+ ​                ​}​)​; 
+ ​        ​}​; 
+  
+ ​         
+ ​      ​</​script​> 
+ ​      ​<​script​> 
+ ​        ​document​.​getElementById​(​"cookie_consent_revoke"​)​.​addEventListener​(​"click"​,​ ​function​(​)​ ​{ 
+ ​          ​this​.​revokeChoice​(​) 
+ ​        ​}​) 
+ ​      ​</​script​>
+    
+     -->
+     
   </head>
   
   
@@ -567,98 +638,8 @@
         </div>
       </div>
     
-
-      <a id="cookie_consent_revoke" type="button" class=" btn btn-secondary cc-revoke">Cookies löschen</a>
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" data-cfasync="false"></script>
-      <script>
-        var popup;
-        window.addEventListener('load', function(){
-          window.cookieconsent.initialise({
-          //set revokeBtn if you don't want to see a tiny pullup bar overlapping your website
-          //if revokeBtn is set, make sure to include a link to cookie settings in your footer
-          //you can open your banner again with: popup.open();
-          //revokeBtn: "<div class='cc-revoke'></div>",
-          type: "opt-in",
-          theme: "classic",
-          palette: {
-              popup: {
-                  background: "#000",
-                  text: "#fff"
-                },
-              button: {
-                  background: "#fd0",
-                  text: "#000"
-                }
-            },
-            onInitialise: function(status) {
-              // request gtag.js on page-load when the client already consented
-              if(status == cookieconsent.status.allow) setCookies();
-            },
-            onStatusChange: function(status) {
-              // resquest gtag cookies on a new consent
-              if (this.hasConsented()) setCookies();
-              else deleteCookies(this.options.cookie.name)
-            },
-            /* enable this to hide the cookie banner outside GDPR regions
-            law: {
-              regionalLaw: false,
-            },
-            location: true,
-            },
-            */
-           
-            function (p) {
-                popup = p;
-          }})
-        });
-
-        //it is absolutely crucial to define gtag in the global scope
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-ZYLDQ6GXZ5', {'anonymize_ip': true});
-
-        function setCookies() {
-            var s = document.createElement('script');
-            s.type = "text/javascript"
-            s.async = "true";
-            s.src = "https://www.googletagmanager.com/gtag/js?id=G-ZYLDQ6GXZ5";
-            var x = document.getElementsByTagName('script')[0];
-            x.parentNode.insertBefore(s, x);
-
-            // you can add facebook-pixel and other cookies here
-        };
-
-        function deleteCookies(cookieconsent_name) {
-                var keep = [cookieconsent_name, "DYNSRV"];
-
-                document.cookie.split(';').forEach(function(c) {
-                    c = c.split('=')[0].trim();
-                    if (!~keep.indexOf(c))
-                        document.cookie = c + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/';
-                });
-        };
-
-        
-      </script>
-      <script>
-        document.getElementById("cookie_consent_revoke").addEventListener("click", function() {
-          this.revokeChoice()
-        })
-      </script>
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    
       <a id="title_change_button" type="button" class="btn btn-secondary">Titelsprache ändern</a>
       
 
