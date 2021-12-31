@@ -121,89 +121,85 @@
     
     
     <!-- Google Analytics
-     
- ​      ​<​a​ ​id​="​cookie_consent_revoke​" ​type​="​button​" ​class​="​ btn btn-secondary cc-revoke​"​>​Cookies löschen​</​a​> 
- ​      ​<​link​ ​rel​="​stylesheet​" ​type​="​text/css​" ​href​="​https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css​" /> 
- ​      ​<​script​ ​src​="​https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js​" ​data-cfasync​="​false​"​>​</​script​> 
- ​      ​<​script​> 
- ​        ​var​ ​popup​; 
- ​        ​window​.​addEventListener​(​'load'​,​ ​function​(​)​{ 
- ​          ​window​.​cookieconsent​.​initialise​(​{ 
- ​          ​//set revokeBtn if you don't want to see a tiny pullup bar overlapping your website 
- ​          ​//if revokeBtn is set, make sure to include a link to cookie settings in your footer 
- ​          ​//you can open your banner again with: popup.open(); 
- ​          ​//revokeBtn: "<div class='cc-revoke'></div>", 
- ​          ​type​: ​"opt-in"​, 
- ​          ​theme​: ​"classic"​, 
- ​          ​palette​: ​{ 
- ​              ​popup​: ​{ 
- ​                  ​background​: ​"#000"​, 
- ​                  ​text​: ​"#fff" 
- ​                ​}​, 
- ​              ​button​: ​{ 
- ​                  ​background​: ​"#fd0"​, 
- ​                  ​text​: ​"#000" 
- ​                ​} 
- ​            ​}​, 
- ​            ​onInitialise​: ​function​(​status​)​ ​{ 
- ​              ​// request gtag.js on page-load when the client already consented 
- ​              ​if​(​status​ ​==​ ​cookieconsent​.​status​.​allow​)​ ​setCookies​(​)​; 
- ​            ​}​, 
- ​            ​onStatusChange​: ​function​(​status​)​ ​{ 
- ​              ​// resquest gtag cookies on a new consent 
- ​              ​if​ ​(​this​.​hasConsented​(​)​)​ ​setCookies​(​)​; 
- ​              ​else​ ​deleteCookies​(​this​.​options​.​cookie​.​name​) 
- ​            ​}​, 
- ​            ​/* enable this to hide the cookie banner outside GDPR regions 
- ​            law: { 
- ​              regionalLaw: false, 
- ​            }, 
- ​            location: true, 
- ​            }, 
- ​            */ 
- ​            
- ​            ​function​ ​(​p​)​ ​{ 
- ​                ​popup​ ​=​ ​p​; 
- ​          ​}​}​) 
- ​        ​}​)​; 
+
+       <a id="cookie_consent_revoke" type="button" class=" btn btn-secondary cc-revoke">Cookies löschen</a> 
+       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" /> 
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" data-cfasync="false"></script> 
+       <script> 
+         var popup; 
+         window.addEventListener('load', function(){ 
+           window.cookieconsent.initialise({ 
+           //set revokeBtn if you don't want to see a tiny pullup bar overlapping your website 
+           //if revokeBtn is set, make sure to include a link to cookie settings in your footer 
+           //you can open your banner again with: popup.open(); 
+           //revokeBtn: "<div class='cc-revoke'></div>", 
+           type: "opt-in", 
+           theme: "classic", 
+           palette: { 
+               popup: { 
+                   background: "#000", 
+                   text: "#fff" 
+                 }, 
+               button: { 
+                   background: "#fd0", 
+                   text: "#000" 
+                 } 
+             }, 
+             onInitialise: function(status) { 
+               // request gtag.js on page-load when the client already consented 
+               if(status == cookieconsent.status.allow) setCookies(); 
+             }, 
+             onStatusChange: function(status) { 
+               // resquest gtag cookies on a new consent 
+               if (this.hasConsented()) setCookies(); 
+               else deleteCookies(this.options.cookie.name) 
+             }, 
+             /* enable this to hide the cookie banner outside GDPR regions 
+             law: { 
+               regionalLaw: false, 
+             }, 
+             location: true, 
+             }, 
+             */ 
+             function (p) { 
+                 popup = p; 
+           }}) 
+         }); 
   
- ​        ​//it is absolutely crucial to define gtag in the global scope 
- ​        ​window​.​dataLayer​ ​=​ ​window​.​dataLayer​ ​||​ ​[​]​; 
- ​        ​function​ ​gtag​(​)​{​dataLayer​.​push​(​arguments​)​;​} 
- ​        ​gtag​(​'js'​,​ ​new​ ​Date​(​)​)​; 
- ​        ​gtag​(​'config'​,​ ​'G-ZYLDQ6GXZ5'​,​ ​{​'anonymize_ip'​: ​true​}​)​; 
+         //it is absolutely crucial to define gtag in the global scope 
+         window.dataLayer = window.dataLayer || []; 
+         function gtag(){dataLayer.push(arguments);} 
+         gtag('js', new Date()); 
+         gtag('config', 'G-ZYLDQ6GXZ5', {'anonymize_ip': true}); 
   
- ​        ​function​ ​setCookies​(​)​ ​{ 
- ​            ​var​ ​s​ ​=​ ​document​.​createElement​(​'script'​)​; 
- ​            ​s​.​type​ ​=​ ​"text/javascript" 
- ​            ​s​.​async​ ​=​ ​"true"​; 
- ​            ​s​.​src​ ​=​ ​"https://www.googletagmanager.com/gtag/js?id=G-ZYLDQ6GXZ5"​; 
- ​            ​var​ ​x​ ​=​ ​document​.​getElementsByTagName​(​'script'​)​[​0​]​; 
- ​            ​x​.​parentNode​.​insertBefore​(​s​,​ ​x​)​; 
+         function setCookies() { 
+             var s = document.createElement('script'); 
+             s.type = "text/javascript" 
+             s.async = "true"; 
+             s.src = "https://www.googletagmanager.com/gtag/js?id=G-ZYLDQ6GXZ5"; 
+             var x = document.getElementsByTagName('script')[0]; 
+             x.parentNode.insertBefore(s, x); 
   
- ​            ​// you can add facebook-pixel and other cookies here 
- ​        ​}​; 
+             // you can add facebook-pixel and other cookies here 
+         }; 
   
- ​        ​function​ ​deleteCookies​(​cookieconsent_name​)​ ​{ 
- ​                ​var​ ​keep​ ​=​ ​[​cookieconsent_name​,​ ​"DYNSRV"​]​; 
+         function deleteCookies(cookieconsent_name) { 
+                 var keep = [cookieconsent_name, "DYNSRV"]; 
   
- ​                ​document​.​cookie​.​split​(​';'​)​.​forEach​(​function​(​c​)​ ​{ 
- ​                    ​c​ ​=​ ​c​.​split​(​'='​)​[​0​]​.​trim​(​)​; 
- ​                    ​if​ ​(​!​~​keep​.​indexOf​(​c​)​) 
- ​                        ​document​.​cookie​ ​=​ ​c​ ​+​ ​'=;'​ ​+​ ​'expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/'​; 
- ​                ​}​)​; 
- ​        ​}​; 
-  
- ​         
- ​      ​</​script​> 
- ​      ​<​script​> 
- ​        ​document​.​getElementById​(​"cookie_consent_revoke"​)​.​addEventListener​(​"click"​,​ ​function​(​)​ ​{ 
- ​          ​this​.​revokeChoice​(​) 
- ​        ​}​) 
- ​      ​</​script​>
-    
+                 document.cookie.split(';').forEach(function(c) { 
+                     c = c.split('=')[0].trim(); 
+                     if (!~keep.indexOf(c)) 
+                         document.cookie = c + '=;' + 'expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/'; 
+                 }); 
+         }; 
+       </script> 
+
+       <script> 
+         document.getElementById("cookie_consent_revoke").addEventListener("click", function() { 
+           this.revokeChoice() 
+         }) 
+       </script>
      -->
-     
   </head>
   
   
@@ -552,11 +548,12 @@
                 <div class="card-body">
                   <h5 class="card-title">Deine Zustimmung ist erforderlich.</h5>
                   <p class="card-text">
-                    Mit dem Aufruf der Karte erklärst Du Dich einverstanden, dass Deine Daten an Google übermittelt werden. Wir haben darauf keinen Einfluss.<br>Weitere Informationen dazu sind zu finden in unserer <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"> Datenschutzerklärung</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a></p>
+                    Mit dem Aufruf der Karte erklärst Du Dich einverstanden, dass Deine Daten an Google übermittelt werden. Wir haben darauf keinen Einfluss.<br>Weitere Informationen dazu findest du in unserer <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"> Datenschutzerklärung</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a></p>
                   <a id="mapbutton" type="button" class="btn btn-primary">Zustimmen</a>
                 </div>
               </div>
               <iframe width="100%" class="hidden" id="mapframe" height ="400px" style="border:0" padding=10px loading="lazy"  src="about:blank" allowfullscreen data-src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJo4HlHRrBl0cROIhz7ZR9k94&key=AIzaSyASpjN5oCxnx9Qop0tiGctlzJJ5lYE-1ec"></iframe>
+              
               <script>//Zustimmung abwarten
                 const iframe = document.getElementById("mapframe");
                 const iframe2 = document.getElementById("consentframe");
@@ -643,7 +640,7 @@
       <a id="title_change_button" type="button" class="btn btn-secondary">Titelsprache ändern</a>
       
 
-      <script>//Zustimmung abwarten
+      <script> //Sprache ändern
         const list_jp = document.getElementsByClassName("title_jp");
         const list_en = document.getElementsByClassName("title_en");
         const list_ro = document.getElementsByClassName("title_ro");
@@ -681,13 +678,6 @@
           }
         });
       </script>
-
-
-
-
-
-
-
 
 
       <!--PRIVACY-->
