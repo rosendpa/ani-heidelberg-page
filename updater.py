@@ -51,10 +51,12 @@ def list_cleanup(data, mal=False):
     for i in range(len(data)):
         old = data[i]
         try:
-            if mal: 
+            if mal: #force update from mal
                 a=1/0 #go to except
-            if min([len(str(s)) for s in list(old.values())])==0:
+            if min([len(str(s)) for s in list(old.values())])==0: #missing entries
                 a=1/0
+            if old["progr"][-2]=="?": #unknown episode count
+                a=1/0 
             tmp = {"index":old["index"], 
                    "malid":old["malid"],
                    "title":old["title"],
