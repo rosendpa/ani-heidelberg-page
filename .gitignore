@@ -1,4 +1,2 @@
-#ignore all jupyter checkpoints
-.ipynb_checkpoints/*
 #ignore all archive backups
 backup/*
