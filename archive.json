@@ -1261,19 +1261,6 @@
         "statu": "F"
     },
     {
-        "index": "96",
-        "malid": "48471",
-        "title": "Tsuki to Laika to Nosferatu",
-        "titen": "Irina: The Vampire Cosmonaut",
-        "titjp": "\u6708\u3068\u30e9\u30a4\u30ab\u3068\u5438\u8840\u59eb",
-        "theme": "Space, Vampire",
-        "imurl": "https://cdn.myanimelist.net/images/anime/1393/118374l.jpg",
-        "semes": "21W",
-        "progr": "10/12",
-        "vdate": "05.01.2022",
-        "statu": "W"
-    },
-    {
         "index": "97",
         "malid": "48569",
         "title": "86 Part 2",
@@ -1284,6 +1271,19 @@
         "semes": "21W",
         "progr": "10/12",
         "vdate": "05.01.2022",
+        "statu": "D"
+    },
+    {
+        "index": "96",
+        "malid": "48471",
+        "title": "Tsuki to Laika to Nosferatu",
+        "titen": "Irina: The Vampire Cosmonaut",
+        "titjp": "\u6708\u3068\u30e9\u30a4\u30ab\u3068\u5438\u8840\u59eb",
+        "theme": "Space, Vampire",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1393/118374l.jpg",
+        "semes": "21W",
+        "progr": "11/12",
+        "vdate": "1901222022",
         "statu": "W"
     },
     {
@@ -1295,8 +1295,8 @@
         "theme": "Demons, Historical",
         "imurl": "https://cdn.myanimelist.net/images/anime/1908/120036l.jpg",
         "semes": "21W",
-        "progr": "03/11",
-        "vdate": "05.01.2022",
+        "progr": "04/11",
+        "vdate": "1901222022",
         "statu": "W"
     }
 ]
