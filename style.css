@@ -104,8 +104,13 @@
     border-radius: 0px;
     box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
   }
+  .markC {
+    background-color: #a39ead;
+    border-radius: 0px;
+    box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
+  }
   .markS {
-    background-color: #ff7be2;
+    background-color: #8222ff;
     border-radius: 0px;
     box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
   }
