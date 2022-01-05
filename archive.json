@@ -1248,6 +1248,19 @@
         "statu": "F"
     },
     {
+        "index": "99",
+        "malid": "46093",
+        "title": "Shiroi Suna no Aquatope",
+        "titen": "The Aquatope on White Sand",
+        "titjp": "\u767d\u3044\u7802\u306e\u30a2\u30af\u30a2\u30c8\u30fc\u30d7",
+        "theme": " ",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1932/114952l.jpg",
+        "semes": "21S",
+        "progr": "24/24",
+        "vdate": "05.01.2022",
+        "statu": "F"
+    },
+    {
         "index": "96",
         "malid": "48471",
         "title": "Tsuki to Laika to Nosferatu",
@@ -1283,19 +1296,6 @@
         "imurl": "https://cdn.myanimelist.net/images/anime/1908/120036l.jpg",
         "semes": "21W",
         "progr": "03/11",
-        "vdate": "05.01.2022",
-        "statu": "W"
-    },
-    {
-        "index": "99",
-        "malid": "46093",
-        "title": "Shiroi Suna no Aquatope",
-        "titen": "The Aquatope on White Sand",
-        "titjp": "\u767d\u3044\u7802\u306e\u30a2\u30af\u30a2\u30c8\u30fc\u30d7",
-        "theme": " ",
-        "imurl": "https://cdn.myanimelist.net/images/anime/1932/114952l.jpg",
-        "semes": "21S",
-        "progr": "24/24",
         "vdate": "05.01.2022",
         "statu": "W"
     }
