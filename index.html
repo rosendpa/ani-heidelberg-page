@@ -320,6 +320,9 @@
                                     if(schedule[i][2] == "C"){
                                       string = string + "markC "
                                     }
+                                    if(schedule[i][2] == "D"){
+                                      string = string + "markD "
+                                    }
                                     if(schedule[i][2] == "S"){
                                       string = string + "markS "
                                     }
@@ -496,7 +499,7 @@
                             for (i = schedule.length-1; i>=0; i--){
                                 //console.log(schedule[i])
                                 if(schedule[i][0].getTime()>now.getTime()-1000*60*15){
-                                    if(schedule[i][2]=="A" || schedule[i][2]=="B")
+                                    if(schedule[i][2]!="A" || schedule[i][2]=="B" || schedule[i][2]=="C" || schedule[i][2]=="D")
                                     future.push(schedule[i])
                                 } 
                             }
