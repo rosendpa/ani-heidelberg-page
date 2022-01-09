@@ -249,13 +249,15 @@ def dates_sort(dates):
 def dates_next(dates):
     dates = dates_sort(dates)
     i = len(dates)
+    #letzte Sitzung finden
     while True:
         i+=-1
-        if dates[i]["type"]!="S":
+        if(dates[i]["type"]!="A" or dates[i]["type"]=="B" or dates[i]["type"]=="C" or dates[i]["type"]=="D"):
             break
 
     d = datetime.fromisoformat(dates[i]["date"])
 
+    #Sitzung 5 mal kopieren
     for j in range(1,5):
         tmp_d = d + timedelta(days=7*j)
         print("Datum für Sitzung:", str(tmp_d)[:16])
@@ -289,6 +291,7 @@ def dates_new(dates):
         print("ERROR: Zeit/Termintyp ungültig")
     print("")
     return dates_sort(dates)
+
 
 def savejson(data, dates):
     try: #backup

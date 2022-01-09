@@ -16,7 +16,7 @@
     background-image: linear-gradient(to bottom, rgb(104, 104, 104),rgb(29, 29, 29));
   }
 
-/* Viewport breite fuer navtab wrapping */
+  /* Viewport breite fuer navtab wrapping */
   @media (max-width: 1000px) {
     tabdiv {
       height: 42px;
@@ -52,7 +52,7 @@
     display: flex;
     background: #ffffff00;
   }
-
+  
   .container.calendar {
     border-radius: 2px;
     padding: 2px;
@@ -66,7 +66,6 @@
     border-radius: 2px;
     box-shadow: 2px 2px 2px #b3b3b3, -1px 0 0.6em #7a7a7a;
   }
-
   .td {
     width: 14.2%;
     padding: 0px;
@@ -75,50 +74,50 @@
     text-align: center;
     cursor: pointer;
   }
-  
-
   tr {
     padding-top: 2px;
     padding-bottom: 2px;
     text-align: center;
   }
-
   th {
     width: 32px;
     font-weight: 600;
     text-align: center;
   }
 
-  .markA {
+  .markA { /*Hybridsitzung?*/
     background-color: #a6d2ff;
     border-radius: 0px;
     box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
   }
-  .markB {
+  .markB { /*onlinesitzung*/
     background-color: #fff9a9;
     border-radius: 0px;
     box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
   }
-  .markC {
+  .markC { /*Probeschauen*/
     background-color: #95ff80;
     border-radius: 0px;
     box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
   }
   .markD {
-    background-color: #a39ead;
+    background-color: #bea05e;
     border-radius: 0px;
     box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
   }
-  .markS {
-    background-color: #8222ff;
+  .markS { /*special event*/
+    background-color: #7d1ff8;
     border-radius: 0px;
     box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
   }
-
+  .markS { /*cons etc*/
+    background-color: #696969;
+    border-radius: 0px;
+    box-shadow: 2px 2px 2px #a6acaf, -0em 0 0.0em #f8f9f9;
+  }
   .past {
     color: rgb(202, 202, 202);
   }
-
   .today {
     color: rgb(255, 0, 0);
   }

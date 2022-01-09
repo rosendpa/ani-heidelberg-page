@@ -326,6 +326,9 @@
                                     if(schedule[i][2] == "S"){
                                       string = string + "markS "
                                     }
+                                    if(schedule[i][2] == "V"){
+                                      string = string + "markV "
+                                    }
                                     string = string + "' title='"+("00" + schedule[i][0].getHours()).slice(-2) + ":" + ("00" + schedule[i][0].getMinutes()).slice(-2) + " - " + schedule[i][1]
                                   }
                                 }
@@ -389,8 +392,17 @@
                                     if(schedule[i][2] == "B"){
                                       string = string + "markB "
                                     }
+                                    if(schedule[i][2] == "C"){
+                                      string = string + "markC "
+                                    }
+                                    if(schedule[i][2] == "D"){
+                                      string = string + "markD "
+                                    }
                                     if(schedule[i][2] == "S"){
                                       string = string + "markS "
+                                    }
+                                    if(schedule[i][2] == "V"){
+                                      string = string + "markV "
                                     }
                                     string = string + "' title='"+("00" + schedule[i][0].getHours()).slice(-2) + ":" + ("00" + schedule[i][0].getMinutes()).slice(-2) + " - " + schedule[i][1]
                                   }
@@ -499,8 +511,9 @@
                             for (i = schedule.length-1; i>=0; i--){
                                 //console.log(schedule[i])
                                 if(schedule[i][0].getTime()>now.getTime()-1000*60*15){
-                                    if(schedule[i][2]!="A" || schedule[i][2]=="B" || schedule[i][2]=="C" || schedule[i][2]=="D")
-                                    future.push(schedule[i])
+                                    if(schedule[i][2]!="A" || schedule[i][2]=="B" || schedule[i][2]=="C" || schedule[i][2]=="D"){
+                                      future.push(schedule[i])
+                                    }
                                 } 
                             }
                         
@@ -642,48 +655,11 @@
       </div>
     
     
-    
-      <a id="title_change_button" type="button" class="btn btn-secondary">Titelsprache ändern</a>
+    <!--  
+      <a id="title_change_button" >Titelsprache ändern</a>-->
       
 
-      <script> //Sprache ändern
-        const list_jp = document.getElementsByClassName("title_jp");
-        const list_en = document.getElementsByClassName("title_en");
-        const list_ro = document.getElementsByClassName("title_ro");
-
-        //auto 
-        /*
-        window.setInterval(function() {
-          for (var i = 0; i < list_jp.length; i++) {
-            window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40)
-            window.setTimeout("list_jp["+i+"].classList.toggle('hidden');", i*40)
-            
-            window.setTimeout("list_jp["+i+"].classList.toggle('hidden');", i*40+8000)
-            window.setTimeout("list_en["+i+"].classList.toggle('hidden');", i*40+8000)
-
-            window.setTimeout("list_en["+i+"].classList.toggle('hidden');", i*40+18000)
-            window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40+18000)
-          }
-        }, 36000);*/
-
-        //auf knopfdruck
-        document.getElementById("title_change_button").addEventListener("click", function() {
-          for (var i = 0; i < list_jp.length; i++) {
-            if(list_en[i].classList.contains('hidden')){}else{
-              window.setTimeout("list_en["+i+"].classList.toggle('hidden');", i*40)
-              window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40)
-            }
-            if(list_jp[i].classList.contains('hidden')){}else{
-              window.setTimeout("list_jp["+i+"].classList.toggle('hidden');", i*40)
-              window.setTimeout("list_en["+i+"].classList.toggle('hidden');", i*40)
-            }
-            if(list_ro[i].classList.contains('hidden')){}else{
-              window.setTimeout("list_ro["+i+"].classList.toggle('hidden');", i*40)
-              window.setTimeout("list_jp["+i+"].classList.toggle('hidden');", i*40)
-            }
-          }
-        });
-      </script>
+      
 
 
       <!--PRIVACY-->
@@ -752,13 +728,63 @@
             </p>
           </div>
           <div class="col-md-6 text-md-end">
+            <a id="title_change_button" style="text-decoration: underline; color: rgb(155, 0, 72);">  
+              Titelsprache ändern
+              <span class="text-dark title_ro" style="font-weight: 600"> (RO) </span>   
+              <span class="text-dark title_jp hidden" style="font-weight: 600"> (JP) </span>  
+              <span class="text-dark title_en hidden" style="font-weight: 600"> (EN) </span>
+            </a>
+
+            <span class="text-muted mx-2">  |  </span>
             <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapse_priv" aria-expanded="false" aria-controls="collapse_priv">
               Impressum</a>
             <span class="text-muted mx-2">|</span>
             <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapse_priv" aria-expanded="false" aria-controls="collapse_priv">
               Datenschutzerklärung</a>
           </div>
+          <span style="height: 50px;"></span>
         </div>
+
+        <script> //Sprache ändern
+          const list_jp = document.getElementsByClassName("title_jp");
+          const list_en = document.getElementsByClassName("title_en");
+          const list_ro = document.getElementsByClassName("title_ro");
+  
+          var lang = 0; // ro, jp, en
+          var auto = 1; // autoscroll
+  
+          window.setInterval(function() {
+            //auto language cycle 
+            if(auto == 1){
+              lang++;
+              if (lang>2){ lang = 0; }
+              for (var i = 0; i < list_jp.length; i++) {
+                list_ro[i].classList.add('hidden');
+                list_jp[i].classList.add('hidden');
+                list_en[i].classList.add('hidden');
+                if(lang == 0){ list_ro[i].classList.remove('hidden'); }
+                if(lang == 1){ list_jp[i].classList.remove('hidden'); }
+                if(lang == 2){ list_en[i].classList.remove('hidden'); }
+              }
+            }
+          }, 10000);
+  
+          //auf knopfdruck
+          document.getElementById("title_change_button").addEventListener("click", function() {
+            lang++;
+            auto = 0;
+            if (lang>2){ lang = 0; }
+            for (var i = 0; i < list_jp.length; i++) {
+              list_ro[i].classList.add('hidden');
+              list_jp[i].classList.add('hidden');
+              list_en[i].classList.add('hidden');
+              if(lang == 0){ list_ro[i].classList.remove('hidden'); }
+              if(lang == 1){ list_jp[i].classList.remove('hidden'); }
+              if(lang == 2){ list_en[i].classList.remove('hidden'); }
+            } 
+          });
+        </script>
+
       </footer>
     </div>   
     <br>
