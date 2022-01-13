@@ -30,20 +30,25 @@ def getAnime(malid):
 
 def loadjson():
     try:
-        with open('archive.json', encoding="utf-8") as f:
+        with open('archive.json', encoding="utf-8-sig") as f:
             data = json.loads(f.read())
     except:
-        with open('archive.json', encoding="utf-8") as f:
+        with open('archive.json', encoding="utf-8-sig") as f:
             data = json.loads(f.read()[f.read().index("["):])
+
     try:
-        with open('dates.json', encoding="utf-8") as f:
+        with open('dates.json', encoding="utf-8-sig") as f:
             dates = json.loads(f.read())
     except:
-        with open('dates.json', encoding="utf-8") as f:
+        with open('dates.json', encoding="utf-8-sig") as f:
             dates = json.loads(f.read()[f.read().index("["):])
+
     if len(data)*len(dates) != 0:
         print("okay. Daten geladen")
         return data, dates
+    else:
+        print("Fehler beim Daten laden")
+        exit()
 
 def list_cleanup(data, mal=False):
     clean = []
@@ -82,7 +87,7 @@ def list_cleanup(data, mal=False):
                    "title":maldata.title,
                    "titen":maldata.title_english,
                    "titjp":maldata.title_japanese,
-                   "theme":", ".join(maldata.themes),
+                   "theme":", ".join(maldata.genres),
                    "imurl":maldata.image_url.replace(".jpg","l.jpg").replace("ll.jpg","l.jpg"), #get large picture
                    "semes":old["semes"],
                    "progr":("00"+old["progr"][:2].replace("/",""))[-2:]+"/"+("00"+str(maldata.episodes).replace("None","??"))[-2:],
@@ -189,7 +194,7 @@ def list_hinzufuegen(data):
         print("ID ungültig. Suchergebnisse:")
         try:
             search = AnimeSearch(malid)
-            for i in range(min(30,len(search.results))):
+            for i in range(min(10,len(search.results))):
                 print(f'{(" "+str(i+1))[-2:]} -- {search.results[i].title} ({search.results[i].type})')
             i = input("Position: ")
             malid = search.results[int(i)-1].mal_id
@@ -234,7 +239,7 @@ def list_hinzufuegen(data):
         print("")
         print("Statusupdate notwendig...")
         sleep(5)
-        data = list_statusupdate(data, flag_needsort=True)
+        #data = list_statusupdate(data, flag_needsort=True)
     return data
 
 def dates_sort(dates):

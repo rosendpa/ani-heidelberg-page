@@ -1298,5 +1298,31 @@
         "progr": "04/11",
         "vdate": "19.01.2022",
         "statu": "W"
+    },
+    {
+        "index": "101",
+        "malid": "39535",
+        "title": "Mushoku Tensei: Isekai Ittara Honki Dasu",
+        "titen": "Mushoku Tensei: Jobless Reincarnation",
+        "titjp": "\u7121\u8077\u8ee2\u751f \uff5e\u7570\u4e16\u754c\u884c\u3063\u305f\u3089\u672c\u6c17\u3060\u3059\uff5e",
+        "theme": "Drama, Fantasy, Ecchi",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1530/117776l.jpg",
+        "semes": "21W",
+        "progr": "01/11",
+        "vdate": "19.01.2022",
+        "statu": "W"
+    },
+    {
+        "index": "102",
+        "malid": "8129",
+        "title": "Kuragehime",
+        "titen": "Princess Jellyfish",
+        "titjp": "\u6d77\u6708\u59eb",
+        "theme": "Comedy, Slice of Life",
+        "imurl": "https://cdn.myanimelist.net/images/anime/3/24865l.jpg",
+        "semes": "21W",
+        "progr": "01/11",
+        "vdate": "19.01.2022",
+        "statu": "W"
     }
 ]
