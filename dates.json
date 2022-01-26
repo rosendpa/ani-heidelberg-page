@@ -88,5 +88,25 @@
         "date": "2022-02-23T19:30+01:00",
         "title": "Onlinesitzung",
         "type": "B"
+    },
+    {
+        "date": "2022-03-02T19:30+01:00",
+        "title": "Onlinesitzung",
+        "type": "B"
+    },
+    {
+        "date": "2022-03-09T19:30+01:00",
+        "title": "Onlinesitzung",
+        "type": "B"
+    },
+    {
+        "date": "2022-03-16T19:30+01:00",
+        "title": "Onlinesitzung",
+        "type": "B"
+    },
+    {
+        "date": "2022-03-23T19:30+01:00",
+        "title": "Onlinesitzung",
+        "type": "B"
     }
 ]
