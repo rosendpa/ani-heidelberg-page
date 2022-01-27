@@ -25,7 +25,6 @@
                   let sum_serien = 0
                   let tmp = []
                   $.each(result, function (index, item) {
-                      console.log(item.semes)
                       if (item.statu !== "W"){
                           tmp.push(item.semes) //liste aller semester
                       }
@@ -434,7 +433,7 @@
                       <script>
                         $(function () {
                             $.ajax({
-                                url: "https://rosendpa.github.io/ani-heidelberg-page/dates.json",
+                                url: "/dates.json",
                                 cache: false, 
                                 success: function (result) {
                                   
