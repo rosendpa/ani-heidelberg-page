@@ -14,7 +14,7 @@ except:
     exit()
 
 
-#Hilfsfunktionen
+#Hilfsfunktionen Y
 
 def getAnime(malid):
     maldata = None
