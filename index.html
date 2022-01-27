@@ -17,7 +17,7 @@
     <script>
       $(function () {
           $.ajax({
-              url: "https://rosendpa.github.io/ani-heidelberg-page/archive.json",
+              url: "https://ani-heidelberg.de/archive.json",
               cache: false, 
               //async: false, // <- this turns it into synchronous
               success: function (result) {
@@ -25,6 +25,7 @@
                   let sum_serien = 0
                   let tmp = []
                   $.each(result, function (index, item) {
+                      console.log(item.semes)
                       if (item.statu !== "W"){
                           tmp.push(item.semes) //liste aller semester
                       }
