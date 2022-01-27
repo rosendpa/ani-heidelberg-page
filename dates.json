@@ -108,5 +108,10 @@
         "date": "2022-03-23T19:30+01:00",
         "title": "Onlinesitzung",
         "type": "B"
+    },
+    {
+        "date": "2022-03-30T19:30+01:00",
+        "title": "Onlinesitzung",
+        "type": "B"
     }
 ]
