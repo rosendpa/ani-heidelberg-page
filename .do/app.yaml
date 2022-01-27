@@ -1,8 +1,8 @@
-name: sample-html
+name: ani-heidelberg-page
 static_sites:
 - environment_slug: html
   github:
     branch: main
     deploy_on_push: true
-    repo: digitalocean/sample-html
-  name: sample-html
+    repo:  rosendpa/ani-heidelberg-page
+  name: ani-heidelberg-page
