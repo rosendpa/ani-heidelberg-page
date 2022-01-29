@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="favicon_io/site.webmanifest"><link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     
-    <!-- READ ANIME LIST/ PROGRAMM/ ARCHIV -->
-    <script>
+    
+    <script> // Animeliste einlesen und Archiv bauen
       $(function () {
           $.ajax({
               url: "/archive.json",
@@ -36,13 +36,13 @@
                       sum_folgen = sum_folgen + eval(item.progr.substring(0, 2))
                   });
 
-
                   $(".stat").append('<p class="my-4"> Seit der Gründung unseres Clubs am 22. November 2013 haben wir insgesamt <b>'+ sum_folgen + ' Folgen</b> angesehen und <b>'+ sum_serien +' Serien/Seasons</b> abgeschlossen. </p><p> Auf dieser Seite sind alle Serien aus dieser Zeit festgehalten, und geben einen Einblick sowohl in den Wandel der Serien als auch den Geschmack der Mitglieder.</p>')
 
                   //liste aller semester
                   let sem_list = [...new Set(tmp)]
                   sem_list.sort().reverse()
 
+                  // Hinzufuegen zur Ansicht
                   $.each(result, function (index, item) {
                       if (item.statu !== "W"){ //ALTE
                           $(".card-group").eq(sem_list.indexOf(item.semes)).append(
@@ -97,9 +97,9 @@
                                   "</div>" 
                         )
                       }
-                  });            
-                  var j;
-                  let ntp = "";
+                  });        
+                  // teiler dazwischen    
+                  var j; let ntp = "";
                   for (j = 0; j < sem_list.length; j++) {
                       if (sem_list[j][2] == "W"){
                           ntp = "Wintersemester 20" + sem_list[j].slice(0,2) + "/20" + (parseInt(sem_list[j].slice(0,2))+1)
@@ -111,16 +111,208 @@
               }
           });
       });
+
+      $(function () { $('[data-toggle="tooltip"]').tooltip() }) //activate tooltips
     </script>
-    <!-- /READ ANIME LIST/ PROGRAMM/ ARCHIV -->
-    <script>//activate tooltips
+
+    <script> // Sitzungsplan lesen und Kalender Aufbauen
       $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
+          $.ajax({
+              url: "/dates.json",
+              cache: false, 
+              success: function (result) {
+
+              var schedule = [] //speichern in array
+                  $.each(result, function (index, item) {
+                      schedule.push([new Date(item.date),  item.title,  item.type])
+                    });
+              
+              var i = 0
+              var j = 0
+              var tmp = []
+              // sortieren nach datum
+              for (i = 0; i<schedule.length; i++){
+                for (j = i+1; j<schedule.length; j++){
+                  if(schedule[i][0].getTime()<schedule[j][0].getTime()){
+                    tmp = schedule[i]; schedule[i] = schedule[j]; schedule[j] = tmp
+                  }
+                }
+              }
+              //activate tooltips
+              $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+              })
+
+              calendarUpdate(schedule) // kalender bauen
+              nextEventUpdate(schedule) // naechste sitzung updaten
+              }
+          });
       })
+      
+      function calendarUpdate(schedule){
+        const months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
+        const now = new Date();
+        
+        // first prefix
+        $("calout").append("<table>"+
+                                "<thead>"+
+                                  "<tr>"+
+                                    "<th colspan='7' style='text-align:center'>"+months[now.getMonth()]+" "+now.getFullYear()+"</th>"+
+                                  "</tr>"+
+                                  "<tr>"+
+                                    "<th style='text-align:center'>月</th>"+
+                                    "<th style='text-align:center'>火</th>"+
+                                    "<th style='text-align:center'>水</th>"+
+                                    "<th style='text-align:center'>木</th>"+
+                                    "<th style='text-align:center'>金</th>"+
+                                    "<th style='text-align:center'>土</th>"+
+                                    "<th style='text-align:center'>日</th>"+
+                                  "</tr>"+
+                                "</thead>"+
+                                "<tbody>"+
+                                  "<tr>")
+        
+        // first day and offset                            
+        let month_start = new Date(now.getFullYear(),now.getMonth(),1,12,0,0)
+        let offset = month_start.getDay()-1
+        if (offset<0){
+          offset = 6
+        }
+        for (i=0;i<offset; i++){
+          $("calout").append("<div class = 'td btn'></div>")
+        }
+    
+        //alle tage einzeln eintragen
+        let iterator = new Date(month_start)
+        do {
+          //alle marker für jeden tag sammeln
+          // data-toggle='tooltip' data-placement='top' title='Toolti0p on top'
+          let string = ""
+          string = string + "<div class ='td btn "
+          if(now.getDate()>iterator.getDate()){
+            string = string + "past "
+          }
+          if(now.getDate()==iterator.getDate()){
+            string = string + "today "
+          }
+          for (var i = 0; i < schedule.length; i++) {
+            if (schedule[i][0].getMonth() == iterator.getMonth()){
+              if (schedule[i][0].getDate() == iterator.getDate()){
+                string = string + "mark"+schedule[i][2]+" "
+                string = string + "' title='"+("00" + schedule[i][0].getHours()).slice(-2) + ":" + ("00" + schedule[i][0].getMinutes()).slice(-2) + " ～  " + schedule[i][1]
+              }
+            }
+          }
+        //marker eintragen
+          string = string + "' data-toggle='tooltip' data-placement='right'>"+iterator.getDate()+"</div>";
+          $("calout").append(string)
+    
+        //position testen
+          offset = offset + 1
+          if (offset>6){
+            offset = 0
+            $("calout").append(
+              "</tr>"+
+              "<tr>"
+            )
+          }
+          iterator.setDate(iterator.getDate()+1)      
+          //bis monatsende
+        } while(iterator.getMonth()==month_start.getMonth())
+    
+        //suffix
+        $("calout").append(
+              "</tr>"+
+            "</tbody>"+
+          "</table> <p></p>")
+    
+        //repeat
+        month_start.setMonth(iterator.getMonth())
+        $("calout").append("<table>"+
+                                "<thead>"+
+                                  "<tr>"+
+                                    "<th colspan='7' style='text-align:center'>"+months[iterator.getMonth()]+" "+iterator.getFullYear()+"</th>"+
+                                  "</tr>"+
+                                  "<tr>"+
+                                    "<th style='text-align:center'>月</th>"+
+                                    "<th style='text-align:center'>火</th>"+
+                                    "<th style='text-align:center'>水</th>"+
+                                    "<th style='text-align:center'>木</th>"+
+                                    "<th style='text-align:center'>金</th>"+
+                                    "<th style='text-align:center'>土</th>"+
+                                    "<th style='text-align:center'>日</th>"+
+                                  "</tr>"+
+                                "</thead>"+
+                                "<tbody>"+
+                                  "<tr>")                                   
+      
+        for (i=0;i<offset; i++){
+          $("calout").append("<div class = 'td btn'></div>")
+        }
+        
+        do {
+          let string = ""
+          string = string + "<div class ='td btn "
+          for (var i = 0; i < schedule.length; i++) {
+            if (schedule[i][0].getMonth() == iterator.getMonth()){
+              if (schedule[i][0].getDate() == iterator.getDate()){
+                string = string + "mark"+schedule[i][2]+" "
+                string = string + "' title='"+("00" + schedule[i][0].getHours()).slice(-2) + ":" + ("00" + schedule[i][0].getMinutes()).slice(-2) + " ～  " + schedule[i][1]
+              }
+            }
+          }
+          string = string + "' data-toggle='tooltip' data-placement='right'>"+iterator.getDate()+"</div>";
+          $("calout").append(string)
+    
+          offset = offset + 1
+          if (offset>6){
+            offset = 0
+            $("calout").append(
+              "</tr>"+
+              "<tr>"
+            )
+          }
+          iterator.setDate(iterator.getDate()+1)  
+        } while(iterator.getMonth()==month_start.getMonth())
+    
+        $("calout").append(
+              "</tr>"+
+            "</tbody>"+
+          "</table>")        
+      }
+
+      // nächster Termin
+      function nextEventUpdate(schedule){
+        var future = []
+        var i = 0
+        var j = []
+        const now = new Date()
+        for (i = schedule.length-1; i>=0; i--){
+          if(schedule[i][0].getTime()>now.getTime()-1000*60*15){
+            if(schedule[i][2]!="A" || schedule[i][2]=="B" || schedule[i][2]=="C" || schedule[i][2]=="D"){
+              future.push(schedule[i])
+            }
+          } 
+        }
+
+        // Event Fallunterscheidung
+        if (future.length==0){
+          $("sesinf").append('<small class="text-muted">Derzeit keine aktuelle Sitzung öffentlich eingetragen. Für weitere Details zur Teilnahme bitte anfragen.</small>')
+        }else{
+          $("sesinf").append("<b>"+future[0][1]+"</b>")
+          $("sesinf").append(" am <b>" + ("00"+future[0][0].getDate()).slice(-2) + "." + ("00" + (future[0][0].getMonth()+1) ).slice(-2) + "."+ future[0][0].getFullYear() +"</b> ab <b>"+ ("00"+future[0][0].getHours()).slice(-2) + ":" + ("00" + future[0][0].getMinutes()).slice(-2) +" Uhr</b><br>")
+          if (future[0][2]=="A"){
+            $("sesinf").append('StuRa Sitzungsraum <a href="#info"class="small text-muted">(Wegbeschreibung)</a><br>Albert-Überle-Straße 3-5<br> 69120 Heidelberg<br><small class="text-muted">※ Am Tag des Treffens ab ca. 19:15 telefonisch erreichbar unter 06221/54-3451</small>')
+          }else{
+            $("sesinf").append('<small class="text-muted">Zur Teilnahme bitte anfragen.</small>')
+          }
+        }
+      }
     </script>
-    
-    
-    
+
+    <script src="res/jquery.min.js"></script> <!-- local version of <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  -->
+    <script src="res/jquery-3.3.1.min.js"></script> <!-- local version of <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  -->
+
     <!-- Google Analytics
 
        <a id="cookie_consent_revoke" type="button" class=" btn btn-secondary cc-revoke">Cookies löschen</a> 
@@ -201,10 +393,13 @@
          }) 
        </script>
      -->
+  
   </head>
   
+
   
   <body>
+    <!-- NAVBAR -->
     <nav class="navbar bg-dark py-0" id="gradient-y">
       <div class="container " style="padding-left: 45px">        
         <a href="#" class="navbar-brand">
@@ -227,45 +422,7 @@
     </nav>
     <!-- /NAVBAR -->
 
-    <script>
-      alltabs = ["home", "info", "archive"];
-      
-      function refreshtab() {
-        var hashtag = window.location.hash;
-        if(alltabs.includes(hashtag.substring(1))){
-          //deactivate all tabs
-          for (var i = 0; i < alltabs.length; i++) {
-            element = document.getElementById(alltabs[i]+"-tab");
-            element.classList.remove("active");
-            element.setAttribute("aria-selected", false);
-            element = document.getElementById(alltabs[i]);
-            element.classList.remove("active");
-            element.classList.remove("show");
-          }
-          //activate tab with hashtag
-          idtab  = hashtag.substring(1)+"-tab";
-          idpane = hashtag.substring(1);
-          element = document.getElementById(idtab);
-          element.classList.add("active");
-          element.setAttribute("aria-selected", true);
-          element = document.getElementById(idpane);
-          element.classList.add("active");
-          element.classList.add("show");
-        }
-      }
-
-      $(document).ready(function() { refreshtab(); }); //beim laden
-      window.addEventListener('hashchange', function(){ refreshtab(); }) //beim hashtag aendern
-      
-      // hashtag updaten
-      $('button[id]').click(function(e)
-      { 
-        window.location.hash = this.getAttribute("data-bs-target");
-        e.preventDefault();
-      });
-    </script>
-
-
+    
     <!-- PAGE BODY-->
     <div class="container">
       <div style="background-color: rgb(255, 255, 255)">
@@ -293,218 +450,6 @@
                       <div class="container calendar">
                         <calout></calout>
                       </div>
-                    
-                      <script>
-                        var schedule = []
-                          function ajaxCallBack(retString){
-                            schedule = retString;
-                        
-                            //naechste sitzung updaten
-                            schedcallback(schedule)
-                        
-                            //Starte Kalenderbau
-                            const months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
-                            const now = new Date();
-                            
-                            // first prefix
-                            $("calout").append("<table>"+
-                                                    "<thead>"+
-                                                      "<tr>"+
-                                                        "<th colspan='7' style='text-align:center'>"+months[now.getMonth()]+" "+now.getFullYear()+"</th>"+
-                                                      "</tr>"+
-                                                      "<tr>"+
-                                                        "<th style='text-align:center'>月</th>"+
-                                                        "<th style='text-align:center'>火</th>"+
-                                                        "<th style='text-align:center'>水</th>"+
-                                                        "<th style='text-align:center'>木</th>"+
-                                                        "<th style='text-align:center'>金</th>"+
-                                                        "<th style='text-align:center'>土</th>"+
-                                                        "<th style='text-align:center'>日</th>"+
-                                                      "</tr>"+
-                                                    "</thead>"+
-                                                    "<tbody>"+
-                                                      "<tr>")
-                            
-                            // first day and offset                            
-                            let month_start = new Date(now.getFullYear(),now.getMonth(),1,12,0,0)
-                            let offset = month_start.getDay()-1
-                            if (offset<0){
-                              offset = 6
-                            }
-                            for (i=0;i<offset; i++){
-                              $("calout").append("<div class = 'td btn'></div>")
-                            }
-                        
-                            //alle tage einzeln eintragen
-                            let iterator = new Date(month_start)
-                            do {
-                              //alle marker für jeden tag sammeln
-                              // data-toggle='tooltip' data-placement='top' title='Toolti0p on top'
-                              let string = ""
-                              string = string + "<div class ='td btn "
-                              if(now.getDate()>iterator.getDate()){
-                                string = string + "past "
-                              }
-                              if(now.getDate()==iterator.getDate()){
-                                string = string + "today "
-                              }
-                              for (var i = 0; i < schedule.length; i++) {
-                                if (schedule[i][0].getMonth() == iterator.getMonth()){
-                                  if (schedule[i][0].getDate() == iterator.getDate()){
-                                    if(schedule[i][2] == "A"){
-                                      string = string + "markA "
-                                    }
-                                    if(schedule[i][2] == "B"){
-                                      string = string + "markB "
-                                    }
-                                    if(schedule[i][2] == "C"){
-                                      string = string + "markC "
-                                    }
-                                    if(schedule[i][2] == "D"){
-                                      string = string + "markD "
-                                    }
-                                    if(schedule[i][2] == "S"){
-                                      string = string + "markS "
-                                    }
-                                    if(schedule[i][2] == "V"){
-                                      string = string + "markV "
-                                    }
-                                    string = string + "' title='"+("00" + schedule[i][0].getHours()).slice(-2) + ":" + ("00" + schedule[i][0].getMinutes()).slice(-2) + " - " + schedule[i][1]
-                                  }
-                                }
-                              }
-                             //marker eintragen
-                              string = string + "' data-toggle='tooltip' data-placement='right'>"+iterator.getDate()+"</div>";
-                              $("calout").append(string)
-                        
-                             //position testen
-                              offset = offset + 1
-                              if (offset>6){
-                                offset = 0
-                                $("calout").append(
-                                  "</tr>"+
-                                  "<tr>"
-                                )
-                              }
-                              iterator.setDate(iterator.getDate()+1)      
-                              //bis monatsende
-                            } while(iterator.getMonth()==month_start.getMonth())
-                        
-                            //suffix
-                            $("calout").append(
-                                  "</tr>"+
-                                "</tbody>"+
-                              "</table> <p></p>")
-                        
-                            //repeat
-                            month_start.setMonth(iterator.getMonth())
-                            $("calout").append("<table>"+
-                                                    "<thead>"+
-                                                      "<tr>"+
-                                                        "<th colspan='7' style='text-align:center'>"+months[iterator.getMonth()]+" "+iterator.getFullYear()+"</th>"+
-                                                      "</tr>"+
-                                                      "<tr>"+
-                                                        "<th style='text-align:center'>月</th>"+
-                                                        "<th style='text-align:center'>火</th>"+
-                                                        "<th style='text-align:center'>水</th>"+
-                                                        "<th style='text-align:center'>木</th>"+
-                                                        "<th style='text-align:center'>金</th>"+
-                                                        "<th style='text-align:center'>土</th>"+
-                                                        "<th style='text-align:center'>日</th>"+
-                                                      "</tr>"+
-                                                    "</thead>"+
-                                                    "<tbody>"+
-                                                      "<tr>")                                   
-                           
-                            for (i=0;i<offset; i++){
-                              $("calout").append("<div class = 'td btn'></div>")
-                            }
-                            
-                            do {
-                              let string = ""
-                              string = string + "<div class ='td btn "
-                              for (var i = 0; i < schedule.length; i++) {
-                                if (schedule[i][0].getMonth() == iterator.getMonth()){
-                                  if (schedule[i][0].getDate() == iterator.getDate()){
-                                    if(schedule[i][2] == "A"){
-                                      string = string + "markA "
-                                    }
-                                    if(schedule[i][2] == "B"){
-                                      string = string + "markB "
-                                    }
-                                    if(schedule[i][2] == "C"){
-                                      string = string + "markC "
-                                    }
-                                    if(schedule[i][2] == "D"){
-                                      string = string + "markD "
-                                    }
-                                    if(schedule[i][2] == "S"){
-                                      string = string + "markS "
-                                    }
-                                    if(schedule[i][2] == "V"){
-                                      string = string + "markV "
-                                    }
-                                    string = string + "' title='"+("00" + schedule[i][0].getHours()).slice(-2) + ":" + ("00" + schedule[i][0].getMinutes()).slice(-2) + " - " + schedule[i][1]
-                                  }
-                                }
-                              }
-                              string = string + "' data-toggle='tooltip' data-placement='right'>"+iterator.getDate()+"</div>";
-                              $("calout").append(string)
-                        
-                              offset = offset + 1
-                              if (offset>6){
-                                offset = 0
-                                $("calout").append(
-                                  "</tr>"+
-                                  "<tr>"
-                                )
-                              }
-                              iterator.setDate(iterator.getDate()+1)  
-                            } while(iterator.getMonth()==month_start.getMonth())
-                        
-                            $("calout").append(
-                                  "</tr>"+
-                                "</tbody>"+
-                              "</table>")        
-                          }
-                      </script>
-                      <script src="res/jquery.min.js"></script>
-                      <!-- local version of <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  -->
-                      <script>
-                        $(function () {
-                            $.ajax({
-                                url: "/dates.json",
-                                cache: false, 
-                                success: function (result) {
-                                  
-                                var schedule = []
-                                    $.each(result, function (index, item) {
-                                        schedule.push([new Date(item.date),  item.title,  item.type])
-                                      });
-                                
-                                var i = 0
-                                var j = 0
-                                var tmp = []
-                                for (i = 0; i<schedule.length; i++){
-                                  for (j = i+1; j<schedule.length; j++){
-                                    if(schedule[i][0].getTime()<schedule[j][0].getTime()){
-                                      tmp = schedule[i]
-                                      schedule[i] = schedule[j]
-                                      schedule[j] = tmp
-                                    }
-                                  }
-                                }
-                                //activate tooltips
-                                $(function () {
-                                  $('[data-toggle="tooltip"]').tooltip()
-                                })
-                                ajaxCallBack(schedule)
-                                }
-                            });
-                        })
-                      </script>
-                      <script src="res/bootstrap.bundle.min.js"></script>
-                      <!-- local version of <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->      
                     </calendar>
                     <!-- /CALENDAR -->
                     <!--<small class="text-muted " style="text-align-last">(Für Informationen hovern)</small>  --> 
@@ -542,35 +487,7 @@
                     </blockquote>
                     <!-- AKTUELLE SITZUNG-->
                     <div class="p-3 my-5 rounded-1" style="background-color: #9e9e9e67;">
-                      <script>
-                        function schedcallback(schedule){
-                            var future = []
-                            var i = 0
-                            var j = []
-                            const now = new Date()
-                            for (i = schedule.length-1; i>=0; i--){
-                                //console.log(schedule[i])
-                                if(schedule[i][0].getTime()>now.getTime()-1000*60*15){
-                                    if(schedule[i][2]!="A" || schedule[i][2]=="B" || schedule[i][2]=="C" || schedule[i][2]=="D"){
-                                      future.push(schedule[i])
-                                    }
-                                } 
-                            }
-                        
-                            if (future.length==0){
-                                $("sesinf").append('<small class="text-muted">Derzeit keine aktuelle Sitzung öffentlich eingetragen. Für weitere Details zur Teilnahme bitte anfragen.</small>')
-                            }else{
-                                $("sesinf").append("<b>"+future[0][1]+"</b>")
-                                $("sesinf").append(" am <b>" + ("00"+future[0][0].getDate()).slice(-2) + "." + ("00" + (future[0][0].getMonth()+1) ).slice(-2) + "."+ future[0][0].getFullYear() +"</b> ab <b>"+ ("00"+future[0][0].getHours()).slice(-2) + ":" + ("00" + future[0][0].getMinutes()).slice(-2) +" Uhr</b><br>")
-                                if (future[0][2]=="A"){
-                                    $("sesinf").append('StuRa Sitzungsraum <a href="#directions"class="small text-muted">(Wegbeschreibung)</a><br>Albert-Überle-Straße 3-5<br> 69120 Heidelberg<br><small class="text-muted">※ Am Tag des Treffens ab ca. 19:15 telefonisch erreichbar unter 06221/54-3451</small>')
-                                }else{
-                                    $("sesinf").append('<small class="text-muted">Zur Teilnahme bitte anfragen.</small>')
-                                }
-                            }
-                        
-                        }
-                      </script>
+                     
                       <h2>Nächste Sitzung:</h2>
                       <p class="lead">
                       <blockquote class="p-1 blockquote text-primary my-4">
@@ -581,8 +498,6 @@
                       </blockquote>
                       </p>
                       <h2 id="program">Aktuelles Programm:</h2> 
-                      <script src="res/jquery-3.3.1.min.js"></script>
-                      <!-- local version of <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  -->
                       <frow class="row my-1 row-cols-1 row-cols-sm-2 row-cols-md-4 g-4 align-items-stretch">
                       </frow>
                     </div>
@@ -607,23 +522,11 @@
                 <div class="card-body">
                   <h5 class="card-title">Deine Zustimmung ist erforderlich.</h5>
                   <p class="card-text">
-                    Mit dem Aufruf der Karte erklärst Du Dich einverstanden, dass deine Daten an Google übermittelt werden. Wir haben darauf keinen Einfluss.<br>Weitere Informationen dazu findest du in unserer <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"> Datenschutzerklärung</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a></p>
+                    Mit dem Aufruf der Karte erklärst Du Dich einverstanden, dass deine Daten an Google übermittelt werden. Wir haben darauf keinen Einfluss.<br>Weitere Informationen dazu findest du in unserer <a href="#" class="text-dark dtpbt" data-bs-toggle="collapse" data-bs-target="#collapse_priv" aria-expanded="false" aria-controls="collapseExample1"> Datenschutzerklärung</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a></p>
                   <a id="mapbutton" type="button" class="btn btn-primary">Zustimmen</a>
                 </div>
               </div>
               <iframe width="100%" class="hidden" id="mapframe" height ="400px" style="border:0" padding=10px loading="lazy"  src="about:blank" allowfullscreen data-src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJo4HlHRrBl0cROIhz7ZR9k94&key=AIzaSyASpjN5oCxnx9Qop0tiGctlzJJ5lYE-1ec"></iframe>
-              
-              <script>//Zustimmung abwarten
-                const iframe = document.getElementById("mapframe");
-                const iframe2 = document.getElementById("consentframe");
-                const icard = document.getElementsByClassName("col")[0];
-                document.getElementById("mapbutton").addEventListener("click", function() {
-                  iframe.classList.toggle("hidden");
-                  iframe2.classList.toggle("hidden");
-                  icard.classList.toggle("hidden");
-                  iframe.setAttribute("src", iframe.getAttribute("data-src"))
-                });
-              </script>
             </div>   
           </div>
           <!-- /INFO TAB -->
@@ -632,12 +535,6 @@
           <div class="tab-pane fade" id="archive" role="tabpanel" aria-labelledby="archive-tab">
             <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
 
-              
-
-
-
-              <script src="res/jquery-3.3.1.min.js"></script>
-              <!-- local version of <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  -->
               <!--Alle Semester anzeigen--> 
               <div class="container-fluid">
                 <h2>Archiv der abgeschlossenen Serien</h2>
@@ -693,14 +590,9 @@
           <!-- /ARCHIVE TAB -->
         </div>
       </div>
-    
-    
-   
-
-      
 
 
-      <!--PRIVACY-->
+      <!--PRIVACY POLICY COLLAPSE-->
       <div class="collapse" id="collapse_priv">
         <hr>
         <div class="container-fluid p-4 my-4 rounded-3" style="background-color: #eeeeee;">
@@ -750,12 +642,14 @@
             <h4>MyAnimeList</h4> <p> Seite bindet Thumbnails von der Seite myanimelist.net ein. Anbieter der Seite ist die MyAnimeList Co., Ltd. , 1-1-1 Hitotsubashi Chiyoda-ku, Tokyo 100-0003 Japan. Zur Nutzung ist es notwendig, Ihre IP-Adresse zu übertragen.  Diese Informationen werden in der Regel an einen Server in den USA und/oder Japan übertragen und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung. </p>
             <p>Die Nutzung von Bildern erfolgt im Interesse einer ansprechenden Darstellung unserer Inhalte. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. </p>
             <h4>Google Maps</h4> <p>Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google Ireland Limited (&bdquo;Google&ldquo;), Gordon House, Barrow Street, Dublin 4, Irland.</p> <p>Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung. Wenn Google Maps aktiviert ist, kann Google zum Zwecke der einheitlichen Darstellung der Schriftarten Google Web Fonts verwenden. Beim Aufruf von Google Maps lädt Ihr Browser die benötigten Web Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.</p> <p>Die Nutzung von Google Maps erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote und an einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und &sect; 25 Abs. 1 TTDSG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z.&nbsp;B. Device-Fingerprinting) im Sinne des TTDSG umfasst. Die Einwilligung ist jederzeit widerrufbar.</p> <p>Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier: <a href="https://privacy.google.com/businesses/gdprcontrollerterms/" target="_blank" rel="noopener noreferrer">https://privacy.google.com/businesses/gdprcontrollerterms/</a> und <a href="https://privacy.google.com/businesses/gdprcontrollerterms/sccs/" target="_blank" rel="noopener noreferrer">https://privacy.google.com/businesses/gdprcontrollerterms/sccs/</a>.</p> <p>Mehr Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy?hl=de</a>.</p>
-            <p>Basierend auf: <a href="https://www.e-recht24.de">https://www.e-recht24.de</a></p> 
+            <p>Basierend auf einer Vorlage von: <a href="https://www.e-recht24.de">https://www.e-recht24.de</a></p> 
           </div>
 
         </div>
       </div>
       <!--/PRIVACY-->
+
+
       <!-- FOOTER-->
       <hr>
       <footer>
@@ -782,67 +676,115 @@
           </div>
           <span style="height: 50px;"></span>
         </div>
-
-        <script>
-
-          dtpbt_open = 0;
-          function forceCloseCollapse(event){
-            dtpbt_open += 1
-            element = document.getElementById("collapse_priv")
-            if (element.classList.contains("collapsing")){ 
-              if (dtpbt_open % 2 == 0){ 
-                window.setTimeout("element.classList.remove('show')", 500); 
-              } 
-            }
-          }
-
-          $(document).on('click', '.dtpbt', forceCloseCollapse);
-        </script>
-
-
-        <script> //Sprache ändern
-          const list_jp = document.getElementsByClassName("title_jp");
-          const list_en = document.getElementsByClassName("title_en");
-          const list_ro = document.getElementsByClassName("title_ro");
-  
-          var lang = 0; // ro, jp, en
-          var auto = 1; // autoscroll
-  
-          window.setInterval(function() {
-            //auto language cycle 
-            if(auto == 1){
-              lang++;
-              if (lang>2){ lang = 0; }
-              for (var i = 0; i < list_jp.length; i++) {
-                list_ro[i].classList.add('hidden');
-                list_jp[i].classList.add('hidden');
-                list_en[i].classList.add('hidden');
-                if(lang == 0){ list_ro[i].classList.remove('hidden'); }
-                if(lang == 1){ list_jp[i].classList.remove('hidden'); }
-                if(lang == 2){ list_en[i].classList.remove('hidden'); }
-              }
-            }
-          }, 10000);
-  
-          //auf knopfdruck
-          document.getElementById("title_change_button").addEventListener("click", function() {
-            lang++;
-            auto = 0;
-            if (lang>2){ lang = 0; }
-            for (var i = 0; i < list_jp.length; i++) {
-              list_ro[i].classList.add('hidden');
-              list_jp[i].classList.add('hidden');
-              list_en[i].classList.add('hidden');
-              if(lang == 0){ list_ro[i].classList.remove('hidden'); }
-              if(lang == 1){ list_jp[i].classList.remove('hidden'); }
-              if(lang == 2){ list_en[i].classList.remove('hidden'); }
-            } 
-          });
-        </script>
-
       </footer>
     </div>   
     <br>
+
+
+
+    <script> // Zustimmung für Karte abwarten
+      const iframe = document.getElementById("mapframe");
+      const iframe2 = document.getElementById("consentframe");
+      const icard = document.getElementsByClassName("col")[0];
+      document.getElementById("mapbutton").addEventListener("click", function() {
+        iframe.classList.toggle("hidden");
+        iframe2.classList.toggle("hidden");
+        icard.classList.toggle("hidden");
+        iframe.setAttribute("src", iframe.getAttribute("data-src"))
+      });
+    </script>
+
+    <script> // Datenschutzerklaerung schliessen
+      dtpbt_open = 0;
+      function forceCloseCollapse(event){
+        dtpbt_open += 1
+        element = document.getElementById("collapse_priv")
+        if (element.classList.contains("collapsing")){ 
+          if (dtpbt_open % 2 == 0){ 
+            window.setTimeout("element.classList.remove('show')", 500); 
+          } 
+        }
+      }
+      $(document).on('click', '.dtpbt', forceCloseCollapse);
+    </script>
+
+    <script> // tab navigation and hashtag fix
+      alltabs = ["home", "info", "archive"];
+      function refreshtab() {
+        var hashtag = window.location.hash;
+        if(alltabs.includes(hashtag.substring(1))){
+          //deactivate all tabs
+          for (var i = 0; i < alltabs.length; i++) {
+            element = document.getElementById(alltabs[i]+"-tab");
+            element.classList.remove("active");
+            element.setAttribute("aria-selected", false);
+            element = document.getElementById(alltabs[i]);
+            element.classList.remove("active");
+            element.classList.remove("show");
+          }
+          //activate tab with hashtag
+          idtab  = hashtag.substring(1)+"-tab";
+          idpane = hashtag.substring(1);
+          element = document.getElementById(idtab);
+          element.classList.add("active");
+          element.setAttribute("aria-selected", true);
+          element = document.getElementById(idpane);
+          element.classList.add("active");
+          element.classList.add("show");
+        }
+      }
+
+      $(document).ready(function() { refreshtab(); }); //beim laden
+      window.addEventListener('hashchange', function(){ refreshtab(); }) // beim hashtag aendern
+      
+      $('button[id]').click(function(e) // hashtag updaten
+      { 
+        window.location.hash = this.getAttribute("data-bs-target");
+        e.preventDefault();
+      });
+    </script>
+
+    <script> //Sprache ändern
+      const list_jp = document.getElementsByClassName("title_jp");
+      const list_en = document.getElementsByClassName("title_en");
+      const list_ro = document.getElementsByClassName("title_ro");
+
+      var lang = 0; // ro, jp, en
+      var auto = 1; // autoscroll
+
+      window.setInterval(function() {
+        //auto language cycle 
+        if(auto == 1){
+          lang++;
+          if (lang>2){ lang = 0; }
+          for (var i = 0; i < list_jp.length; i++) {
+            list_ro[i].classList.add('hidden');
+            list_jp[i].classList.add('hidden');
+            list_en[i].classList.add('hidden');
+            if(lang == 0){ list_ro[i].classList.remove('hidden'); }
+            if(lang == 1){ list_jp[i].classList.remove('hidden'); }
+            if(lang == 2){ list_en[i].classList.remove('hidden'); }
+          }
+        }
+      }, 10000);
+
+      //auf knopfdruck
+      document.getElementById("title_change_button").addEventListener("click", function() {
+        lang++;
+        auto = 0;
+        if (lang>2){ lang = 0; }
+        for (var i = 0; i < list_jp.length; i++) {
+          list_ro[i].classList.add('hidden');
+          list_jp[i].classList.add('hidden');
+          list_en[i].classList.add('hidden');
+          if(lang == 0){ list_ro[i].classList.remove('hidden'); }
+          if(lang == 1){ list_jp[i].classList.remove('hidden'); }
+          if(lang == 2){ list_en[i].classList.remove('hidden'); }
+        } 
+      });
+    </script>
+
+
     <script src="res/bootstrap.bundle.min.js"></script>
     <!-- local version of <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
   </body>
