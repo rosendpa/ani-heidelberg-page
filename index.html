@@ -226,6 +226,45 @@
     </nav>
     <!-- /NAVBAR -->
 
+    <script>
+      alltabs = ["home", "info", "archive"];
+      
+      function refreshtab() {
+        var hashtag = window.location.hash;
+        if(alltabs.includes(hashtag.substring(1))){
+          //deactivate all tabs
+          for (var i = 0; i < alltabs.length; i++) {
+            element = document.getElementById(alltabs[i]+"-tab");
+            element.classList.remove("active");
+            element.setAttribute("aria-selected", false);
+            element = document.getElementById(alltabs[i]);
+            element.classList.remove("active");
+            element.classList.remove("show");
+          }
+          //activate tab with hashtag
+          idtab  = hashtag.substring(1)+"-tab";
+          idpane = hashtag.substring(1);
+          element = document.getElementById(idtab);
+          element.classList.add("active");
+          element.setAttribute("aria-selected", true);
+          element = document.getElementById(idpane);
+          element.classList.add("active");
+          element.classList.add("show");
+        }
+      }
+
+      $(document).ready(function() { refreshtab(); }); //beim laden
+      window.addEventListener('hashchange', function(){ refreshtab(); }) //beim hashtag aendern
+      
+      // hashtag updaten
+      $('button[id]').click(function(e)
+      { 
+        window.location.hash = this.getAttribute("data-bs-target");
+        e.preventDefault();
+      });
+    </script>
+
+
     <!-- PAGE BODY-->
     <div class="container">
       <div style="background-color: rgb(255, 255, 255)">
@@ -655,9 +694,7 @@
       </div>
     
     
-    <!--  
-      <a id="title_change_button" >Titelsprache ändern</a>-->
-      
+   
 
       
 
@@ -736,14 +773,31 @@
             </a>
 
             <span class="text-muted mx-2">  |  </span>
-            <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapse_priv" aria-expanded="false" aria-controls="collapse_priv">
+            <a href="#" class="text-dark dtpbt" data-bs-toggle="collapse" data-bs-target="#collapse_priv" aria-expanded="false" aria-controls="collapse_priv">
               Impressum</a>
             <span class="text-muted mx-2">|</span>
-            <a href="#" class="text-dark" data-bs-toggle="collapse" data-bs-target="#collapse_priv" aria-expanded="false" aria-controls="collapse_priv">
+            <a href="#" class="text-dark dtpbt" data-bs-toggle="collapse" data-bs-target="#collapse_priv" aria-expanded="false" aria-controls="collapse_priv">
               Datenschutzerklärung</a>
           </div>
           <span style="height: 50px;"></span>
         </div>
+
+        <script>
+
+          dtpbt_open = 0;
+          function forceCloseCollapse(event){
+            dtpbt_open += 1
+            element = document.getElementById("collapse_priv")
+            if (element.classList.contains("collapsing")){ 
+              if (dtpbt_open % 2 == 0){ 
+                window.setTimeout("element.classList.remove('show')", 500); 
+              } 
+            }
+          }
+
+          $(document).on('click', '.dtpbt', forceCloseCollapse);
+        </script>
+
 
         <script> //Sprache ändern
           const list_jp = document.getElementsByClassName("title_jp");
