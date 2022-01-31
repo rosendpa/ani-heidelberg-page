@@ -34,20 +34,15 @@
 #⠀⠀⠀⠀⣀⣴⣿⣿⣿⣷⣶⣾⡟⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣈⡑⠓⠠⡉⢹⡖⠒⢛⣙⣋⣉⣉⡩⠅⠀⠀⣉⣡⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⢸⠀⠀⠀⠀⠀⠀⠈
 #⠀⠀⣠⣶⣿⣿⣿⣿⣿⣽⣷⣿⣿⡼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡆⢹⢸⡇⠀⣤⣤⣤⣤⣤⣴⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⠻⣦⡾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 
-# How did you even get here?
+# “Why is it...when you're close to accomplishing something, right in front of you, another barrier appears?"
 
 User-agent: Googlebot
 Disallow: /.do/
-Disallow: /res/
 Disallow: /test.html
 
 User-agent: Googlebot-Image
 Disallow: /favicon_io/
-Disallow: /img/logo_header.jpg
 
 User-agent: *
 Allow: /
-
-Sitemap: http://ani-heidelberg.de/sitemap.xml
-
-⠀
+Disallow: /hurt/nezuko
