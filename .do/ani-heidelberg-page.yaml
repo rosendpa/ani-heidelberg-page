@@ -1,0 +1,28 @@
+alerts:
+- rule: DEPLOYMENT_FAILED
+- rule: DOMAIN_FAILED
+- rule: DEPLOYMENT_LIVE
+- rule: DOMAIN_LIVE
+domains:
+- domain: ani-heidelberg.de
+  type: PRIMARY
+  zone: ani-heidelberg.de
+- domain: www.ani-heidelberg.de
+  type: ALIAS
+  zone: ani-heidelberg.de
+name: ani-heidelberg-page
+region: fra
+static_sites:
+- catchall_document: 404.html
+  cors:
+    allow_methods:
+    - GET
+  environment_slug: html
+  github:
+    branch: main
+    deploy_on_push: true
+    repo: rosendpa/ani-heidelberg-page
+  name: ani-heidelberg-page
+  routes:
+  - path: /
+  source_dir: /
