@@ -3,6 +3,8 @@ from time import sleep
 import datetime
 from datetime import *
 import shutil
+from time import time
+from threading import Thread
 
 try:
     from mal import config
@@ -16,17 +18,7 @@ except:
 
 #Hilfsfunktionen Y
 
-def getAnime(malid):
-    maldata = None
-    timeout = 1
-    while maldata is None:
-        try:
-            maldata = Anime(malid, timeout=10)
-        except Exception as e:
-            print(f"Fehler: {e}  Versuche nochmal in {int(timeout)} sec..")
-            sleep(timeout)
-            timeout=timeout*1.5
-    return maldata
+
 
 def loadjson():
     try:
@@ -50,69 +42,118 @@ def loadjson():
         print("Fehler beim Daten laden")
         exit()
 
-def list_cleanup(data, mal=False):
-    clean = []
-    clean_w = [] #watchlist at the end or beginning
-    for i in range(len(data)):
-        old = data[i]
-        try:
-            if mal: #force update from mal
-                a=1/0 #go to except
-            if min([len(str(s)) for s in list(old.values())])==0: #missing entries
-                a=1/0
-            if old["progr"][-2]=="?": #unknown episode count
-                a=1/0 
-            tmp = {"index":old["index"], 
-                   "malid":old["malid"],
-                   "title":old["title"],
-                   "titen":old["titen"],
-                   "titjp":old["titjp"],
-                   "theme":old["theme"],
-                   "imurl":old["imurl"],
-                   "semes":old["semes"],
-                   "progr":old["progr"],
-                   "vdate":old["vdate"],
-                   "statu":old["statu"]
-                   }
-        except Exception as es:
-            if not mal: 
-                print(f"Ungültiger Eintrag (id:{old['malid']}) entdeckt, lade neu von MAL.. ({es})")
+        
+time_continue = time()
+locked = False
+def getAnime(malid,i=0):
+    global time_continue
+    global locked
+    global head_thread
+    time_start = time()
+    maldata = None
+    while maldata is None:
+        sleep(1)
+        timeout = time_continue-time()
+        while locked: #while blocked
+            if i == head_thread: #only head should test if unblocked
+                if time_continue < time():
+                    print("")
+                    break 
+                else:
+                    print(".", end="")   
+                    sleep(timeout/75)
             else:
-                print("Lade von MAL..")
-            
-            maldata = getAnime(old["malid"])
-                    
-            tmp = {"index":old["index"], 
-                   "malid":old["malid"],
-                   "title":maldata.title,
-                   "titen":maldata.title_english,
-                   "titjp":maldata.title_japanese,
-                   "theme":", ".join(maldata.genres),
-                   "imurl":maldata.image_url.replace(".jpg","l.jpg").replace("ll.jpg","l.jpg"), #get large picture
-                   "semes":old["semes"],
-                   "progr":("00"+old["progr"][:2].replace("/",""))[-2:]+"/"+("00"+str(maldata.episodes).replace("None","??"))[-2:],
-                   "vdate":old["vdate"],
-                   "statu":old["statu"]
-                   }
-            #leere Einträge verhindern
-            if tmp["titen"] in ["null", None, False, ""]:
-                tmp["titen"] = tmp["title"]
-            if tmp["theme"] in ["null", None, False, ""]:
-                tmp["theme"] = " "
-        print("")
-        print(f"Eintrag {tmp['index']}:")
-        print(tmp['title'])
-        print(tmp["titen"])
-        print(tmp["titjp"])
-        print(tmp["theme"])
-        print(tmp["statu"], tmp["progr"])
-        print("")
-        print("")
-        if data[i]["statu"]!="W": 
-            clean.append(tmp)
-        else:
-            clean_w.append(tmp)
-    return clean+clean_w
+                sleep(5)
+                
+        try:
+            maldata = Anime(malid, timeout=10)
+        except Exception as e:
+            print("")
+            locked = True
+            timeout = min(max((time()-time_start)//10*10,10),1200) 
+            time_continue = time() + timeout
+            #print(f"Fehler: {e}  Versuche nochmal in {int(timeout)} sec..")
+            print(f"[{i}] {e}, wait {int(timeout)}s")
+    locked = False    
+    time_continue = time() #reset timeout if successful
+    return maldata
+
+
+def one_cleanup(old, clean, i, mal):
+    try:
+        if mal: #force update from mal
+            a=1/0 #go to except
+        if min([len(str(s)) for s in list(old.values())])==0: #missing entries
+            a=1/0
+        if old["progr"][-2]=="?": #unknown episode count
+            a=1/0 
+        #load old data, maybe there are missing keys
+        tmp = {"index":old["index"], "malid":old["malid"], "title":old["title"], "titen":old["titen"], "titjp":old["titjp"],"theme":old["theme"],"imurl":old["imurl"],"semes":old["semes"],"progr":old["progr"],"vdate":old["vdate"],"statu":old["statu"]}
+    except Exception as es:
+        if not mal: 
+            print(f"Ungültiger Eintrag (id:{old['malid']}) entdeckt, lade neu von MAL.. ({es})")
+
+        maldata = getAnime(old["malid"],i)
+
+        tmp = {"index":old["index"], 
+               "malid":old["malid"],
+               "title":maldata.title,
+               "titen":maldata.title_english,
+               "titjp":maldata.title_japanese,
+               "theme":", ".join(maldata.genres),
+               "imurl":maldata.image_url.replace(".jpg","l.jpg").replace("ll.jpg","l.jpg"), #get large picture
+               "semes":old["semes"],
+               "progr":("00"+old["progr"][:2].replace("/",""))[-2:]+"/"+("00"+str(maldata.episodes).replace("None","??"))[-2:],
+               "vdate":old["vdate"],
+               "statu":old["statu"]
+               }
+        #leere Einträge verhindern
+        if tmp["titen"] in ["null", None, False, ""]:
+            tmp["titen"] = tmp["title"]
+        if tmp["theme"] in ["null", None, False, ""]:
+            tmp["theme"] = " "
+    #print("")
+    #print(f"{tmp['index']} ", end="")
+    print(f"{tmp['title']}\n", end="") 
+    #print(tmp["titen"])
+    #print(tmp["titjp"])
+    #print(tmp["theme"])
+    #print(tmp["statu"], tmp["progr"])
+    #print("")
+    #print("")
+    clean[i] = tmp
+    
+def sort_index(entry):
+    if entry["statu"] == "W":
+        return 0
+    else:
+        return int(entry["index"])
+        #return int(entry["progr"][:2])
+        #return int("".join(entry["vdate"].split(".")[::-1]))
+    
+head_thread = 0
+def list_cleanup(data, mal=False):
+    clean = [{} for i in data]
+    threads = []
+    
+    for i in range(len(data)):
+        #threads.append(Thread(target=call_script, args=(11.0,)))
+        threads.append(Thread(target=one_cleanup, args = (data[i], clean, i, mal)))
+     
+    if mal:
+        print("API request sent, waiting for replies:")
+    
+    for t in threads:
+        sleep(.05)
+        t.start()
+        
+    for i in range(len(threads)):
+        global head_thread
+        head_thread = i
+        threads[i].join()
+        
+    clean = sorted(clean, key=sort_index)
+    return clean
 
 def list_statusupdate(data, flag_needsort=False):
 
@@ -329,8 +370,8 @@ while True:
     print("6 - SPEICHERN UND BEENDEN")
     print("")
     print("    optional:")
-    print("9 - Anime-Liste bereinigen/sortieren")
-    print("0 - Anime-Liste komplett neu aufbauen (braucht lange)")
+    print("9 - Anime-Liste neu sortieren")
+    print("0 - Anime-Liste reinigen bzw. neu aufbauen")
     print("")
     cho = input("wählen:")
     if cho in ["1","2","3","4","6","9","0"]:
@@ -355,5 +396,4 @@ while True:
 
 
 
-        
 
