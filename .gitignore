@@ -1,2 +1,3 @@
 #ignore all archive backups
 backup/*
+.ipynb_checkpoints/*
