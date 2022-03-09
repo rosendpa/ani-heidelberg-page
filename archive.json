@@ -1,18 +1,5 @@
 [
     {
-        "index": "100",
-        "malid": "47778",
-        "title": "Kimetsu no Yaiba: Yuukaku-hen",
-        "titen": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
-        "titjp": "\u9b3c\u6ec5\u306e\u5203 \u904a\u90ed\u7de8",
-        "theme": "Action, Supernatural",
-        "imurl": "https://cdn.myanimelist.net/images/anime/1908/120036l.jpg",
-        "semes": "21W",
-        "progr": "11/11",
-        "vdate": "09.03.2022",
-        "statu": "W"
-    },
-    {
         "index": "103",
         "malid": "2167",
         "title": "Clannad",
@@ -21,8 +8,21 @@
         "theme": "Comedy, Drama, Romance, Slice of Life, Supernatural",
         "imurl": "https://cdn.myanimelist.net/images/anime/1804/95033l.jpg",
         "semes": "21W",
-        "progr": "07/23",
-        "vdate": "09.03.2022",
+        "progr": "08/23",
+        "vdate": "16.03.2022",
+        "statu": "W"
+    },
+    {
+        "index": "104",
+        "malid": "48569",
+        "title": "86 Part 2",
+        "titen": "86 Eighty-Six",
+        "titjp": "86\u2015\u30a8\u30a4\u30c6\u30a3\u30b7\u30c3\u30af\u30b9\u2015",
+        "theme": "Action, Drama, Sci-Fi",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1321/117508l.jpg",
+        "semes": "21W",
+        "progr": "11/12",
+        "vdate": "16.03.2022",
         "statu": "W"
     },
     {
@@ -34,8 +34,8 @@
         "theme": "Drama, Fantasy, Ecchi",
         "imurl": "https://cdn.myanimelist.net/images/anime/1530/117776l.jpg",
         "semes": "21W",
-        "progr": "09/11",
-        "vdate": "09.03.2022",
+        "progr": "10/11",
+        "vdate": "16.03.2022",
         "statu": "W"
     },
     {
@@ -47,8 +47,8 @@
         "theme": "Comedy, Slice of Life",
         "imurl": "https://cdn.myanimelist.net/images/anime/3/24865l.jpg",
         "semes": "21W",
-        "progr": "09/11",
-        "vdate": "09.03.2022",
+        "progr": "10/11",
+        "vdate": "16.03.2022",
         "statu": "W"
     },
     {
@@ -1336,6 +1336,19 @@
         "semes": "21S",
         "progr": "24/24",
         "vdate": "05.01.2022",
+        "statu": "F"
+    },
+    {
+        "index": "100",
+        "malid": "47778",
+        "title": "Kimetsu no Yaiba: Yuukaku-hen",
+        "titen": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
+        "titjp": "\u9b3c\u6ec5\u306e\u5203 \u904a\u90ed\u7de8",
+        "theme": "Action, Supernatural",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1908/120036l.jpg",
+        "semes": "21W",
+        "progr": "11/11",
+        "vdate": "09.03.2022",
         "statu": "F"
     }
 ]
