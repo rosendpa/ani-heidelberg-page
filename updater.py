@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import json
 from time import sleep
 import datetime
