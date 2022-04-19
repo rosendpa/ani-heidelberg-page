@@ -180,8 +180,7 @@ def list_statusupdate(data, flag_needsort=False):
                     data[i]["progr"]=("00"+str(int(data[i]["progr"][:2])+int(inc)))[-2:]+data[i]["progr"][2:]
                     data[i]["vdate"]=date
                 except:
-                    print(f"ERROR: '{data[i]['progr']}' + '{inc}' kein gültiges increment")
-                    print("")
+                    print(f"ERROR: '{data[i]['progr']}' + '{inc}' kein gültiges increment\n")
             if sta!="":
                 if sta in ["W","F","D"]:
                     data[i]["statu"] = sta
