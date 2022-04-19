@@ -1,3 +1,5 @@
 #ignore all archive backups
 backup/*
 .ipynb_checkpoints/*
+./token.txt
+temp.txt
