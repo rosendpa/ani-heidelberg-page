@@ -166,10 +166,7 @@ def list_statusupdate(data, flag_needsort=False):
     if len(date)==8:
         date = date[:2]+"."+date[2:4]+"."+date[4:]
 
-    print("Datum: "+date)
-    print("")
-    print("STATUS UPDATEN: (Eingabe optional)")
-    print("")
+    print("Datum: "+date+"\n\nSTATUS UPDATEN: (Eingabe optional)\n")
 
     for i in range(len(data)):
         if data[i]["statu"]=="W":
@@ -191,8 +188,7 @@ def list_statusupdate(data, flag_needsort=False):
                     data[i]["vdate"]=date
                     flag_needsort = True
                 else:
-                    print(f"ERROR: '{sta}' kein gültiger Status")
-                    print("")
+                    print(f"ERROR: '{sta}' kein gültiger Status\n")
             print("")
 
     print("Programm:") 
