@@ -289,13 +289,14 @@
         const now = new Date()
         for (i = schedule.length-1; i>=0; i--){
           if(schedule[i][0].getTime()>now.getTime()-1000*60*15){
-            if(schedule[i][2]!="A" || schedule[i][2]=="B" || schedule[i][2]=="C" || schedule[i][2]=="D"){
+            if(schedule[i][2]=="A" || schedule[i][2]=="B" || schedule[i][2]=="C" || schedule[i][2]=="D"){
+              //liste aller zukünftigen regulären sitzungen
               future.push(schedule[i])
             }
           } 
         }
 
-        // Event Fallunterscheidung
+        // Event Type Fallunterscheidung (i.e. online vs hybrid)
         if (future.length==0){
           $("sesinf").append('<small class="text-muted">Derzeit keine aktuelle Sitzung öffentlich eingetragen. Für weitere Details zur Teilnahme bitte anfragen.</small>')
         }else{
