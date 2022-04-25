@@ -36,15 +36,13 @@
                       sum_folgen = sum_folgen + eval(item.progr.substring(0, 2))
                   });
 
-                  $(".stat").append('<p class="my-4"> Seit der Gründung unseres Clubs am 22. November 2013 haben wir insgesamt <b>'+ sum_folgen + ' Folgen</b> angesehen und <b>'+ sum_serien +' Serien/Seasons</b> abgeschlossen. </p><p> Auf dieser Seite sind alle Serien aus dieser Zeit festgehalten, und geben einen Einblick sowohl in den Wandel der Serien als auch den Geschmack der Mitglieder.</p>')
-
                   //liste aller semester
                   let sem_list = [...new Set(tmp)]
                   sem_list.sort().reverse()
 
                   // Hinzufuegen zur Ansicht
                   $.each(result, function (index, item) {
-                      if (item.statu !== "W"){ //ALTE
+                      if (item.statu !== "W"){ //ALTE SERIEN -> Archiv
                           $(".card-group").eq(sem_list.indexOf(item.semes)).append(
                           "<div class='col col-xl-2 col-lg-3 col-md-4 col-sm-6 col-xs-6 d-flex align-items-stretch mt-3'>" + 
                               "<div class='card' style='max-width: 18rem'>" +
@@ -66,8 +64,43 @@
                               "</div>"  + 
                           "</div>" 
                           ); 
-                      }else{ // AKTUELLE
+                      }else{ // AKTUELLE SERIEN
+                        // prozentualen Fortschritt berechnen
                         try{var progress = eval(item.progr)} catch(e){var progress = 0.1}
+                        // veralteten Fortschritt extrapolieren
+                        try{
+                          var flag = true 
+                          // so lange inkrementiert werden kann
+                          while(flag){ 
+                            // datum des status und jetzt
+                            var dateString = item.vdate
+                            var date = Date.parse(dateString.slice(6)+"-"+dateString.slice(3,5)+"-"+dateString.slice(0,2));
+                            var now = new Date()
+                            var now = now.getTime()
+                            var dif = (now - date) /1000/60/60/24
+                            //wenn mindestens einen Tag veraltet und noch nicht beendet
+                            if(dif > 1 && progress < 1){ 
+                              // Folge inkrementieren
+                              item.progr = (eval(item.progr.slice(0,2)) + 1).toString().padStart(2, '0') + item.progr.slice(2)
+                              progress = eval(item.progr)
+                              // Datum inkrementieren
+                              var newd = new Date(date + 1000*60*60*24*7) // 7 Tage extra
+                              newd = newd.toISOString().slice(8,10)+"."+newd.toISOString().slice(5,7)+"."+newd.toISOString().slice(0,4)
+                              item.vdate = newd
+                              // Statistik inkrementieren
+                              sum_folgen++
+                              
+                              console.log("Extrapolation der Serie:", item.title, item.progr, item.vdate, progress)
+                            } else{
+                              flag = false //beenden
+                            }
+                          }
+                          // Statistik inkrementieren
+                          if(progress >= 0.9999){
+                            sum_serien++
+                          }
+                        } catch(e){console.log(e)}
+
                         $("frow").eq(0).append(
                                   "<div class='col col-xl-3 col-lg-3 col-md-6 d-flex align-items-stretch mt-3'>" +
                                     "<div class='card' style='max-width: 18rem;'>" +
@@ -107,7 +140,9 @@
                           ntp = "Sommersemester 20" + sem_list[j].slice(0,2) 
                       }
                       $(".separator").eq(j).append("<hr><br><h3> Serien aus dem "+ntp+" <span class='badge bg-secondary'></span></h3>")
-                  }        
+                  }   
+                  // Statistik auf der Archivseite
+                  $(".stat").append('<p class="my-4"> Seit der Gründung unseres Clubs am 22. November 2013 haben wir insgesamt <b>'+ sum_folgen + ' Folgen</b> angesehen und <b>'+ sum_serien +' Serien/Seasons</b> abgeschlossen. </p><p> Auf dieser Seite sind alle Serien aus dieser Zeit festgehalten, und geben einen Einblick sowohl in den Wandel der Serien als auch den Geschmack der Mitglieder.</p>')    
               }
           });
       });
@@ -288,7 +323,7 @@
         var j = []
         const now = new Date()
         for (i = schedule.length-1; i>=0; i--){
-          if(schedule[i][0].getTime()>now.getTime()-1000*60*15){
+          if(schedule[i][0].getTime()>now.getTime()-1000*60*30){ // update 30 minuten nach Start der letzten Sitzung
             if(schedule[i][2]=="A" || schedule[i][2]=="B" || schedule[i][2]=="C" || schedule[i][2]=="D"){
               //liste aller zukünftigen regulären sitzungen
               future.push(schedule[i])
