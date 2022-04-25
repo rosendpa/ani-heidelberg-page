@@ -393,8 +393,8 @@
                   <div class="p-1 my-4 rounded-3" style="background-color: #eeeeee;">
                     <img src="img/logo_sidebar.png" width="100%">
                   </div>
-                  <div class="p-4 my-2 rounded-3" style="background-color: #eeeeee">
-                    <h5>Aktuelle Termine</h5>
+                  <div class="p-3 my-2 rounded-3" style="background-color: #eeeeee;">
+                    <h5>Aktuelle Termine:</h5>
                     <br>
                     <!-- CALENDAR -->
                     <div class="container" style = "content: border-box;">
@@ -416,9 +416,9 @@
                   <div class="p-4 my-4 rounded-3" style="background-color: #eeeeee;">
                     <h1 class="display-4">Willkommen beim Anime-Club an der Universität Heidelberg!</h1>
                     <p class="lead my-4"> Wir sind eine Hochschulgruppe, die sich dem Anime, dem Manga, dem Cosplay und der japanischen Kultur verschrieben hat. <br>
-                    Das Kernstück unserer Aktivitäten bilden unsere wöchentlichen Treffen, bei denen wir jeweils Folgen von je <a class="text-dark" href="#program">vier wechselnden Anime</a> in Heimkinoatmosphäre schauen. Im Anschluss folgt eine freie Diskussion, bei der die Qualität der Serien, kulturelle und gesellschaftliche Aspekte, Produktion und vieles mehr in lockerer Atmosphäre besprochen werden. 
+                    Das Kernstück unserer Aktivitäten bilden unsere wöchentlichen Treffen, bei denen wir jeweils eine Folge von <a class="text-dark" href="#program">vier wechselnden Anime</a> schauen. Im Anschluss folgt eine freie Diskussion, bei der die Qualität der Serien, kulturelle und gesellschaftliche Aspekte, Produktion und mehr in lockerer Atmosphäre besprochen werden. 
                     </p>
-                    <p class="lead my-4">
+                    <p class="my-4 lead">
                     Bei der Auswahl der Serien achten wir auf eine ausgewogene Mischung aus verschiedenen Genres (Comedy, Drama, Action, Science-Fiction, ...).<br>
                     Bei Gelegenheit führen wir auch Sonderaktionen durch (z.B. gemeinsame Besuche von Conventions, Hanami-Picknick auf der Neckarwiese).
                     Wir sind zwar eine Hochschulgruppe, doch auch Nicht-Studierende sind herzlich willkommen. Eine vorherige Anmeldung ist nicht nötig.
@@ -434,7 +434,7 @@
                     <div class="alert p-2 my-4 alert-warning" role="alert">
                         <b><u>Ab sofort</u> werden die Treffen wieder in einem Hybrid-Format (parallel in Präsenz und auf Discord) stattfinden. </b><br>
                         An einer Online-Teilnahme Interessierte sind gerne eingeladen sich für weitere Informationen und Zugangsdaten zu melden. <br>
-                        ※ Teilnahme in Präsenz im Moment noch nur mit 2G-Nachweis und FFP2-Maske. (Stand:&nbsp;21.04.2022)
+                        ※ Teilnahme in Präsenz im Moment noch nur mit 2G-Nachweis und FFP2-Maske. (Stand:&nbsp;25.04.2022)
                         <div class="small"></div> 
                     </div>
 
@@ -642,11 +642,9 @@
     <script> // Zustimmung für Karte abwarten
       const iframe = document.getElementById("mapframe");
       const iframe2 = document.getElementById("consentframe");
-      const icard = document.getElementsByClassName("col")[0];
       document.getElementById("mapbutton").addEventListener("click", function() {
         iframe.classList.toggle("hidden");
         iframe2.classList.toggle("hidden");
-        icard.classList.toggle("hidden");
         iframe.setAttribute("src", iframe.getAttribute("data-src"))
       });
     </script>
