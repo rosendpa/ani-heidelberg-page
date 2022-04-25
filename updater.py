@@ -294,13 +294,13 @@ def dates_next(dates):
     #letzte Sitzung finden
     while True:
         i+=-1
-        if(dates[i]["type"]!="A" or dates[i]["type"]=="B" or dates[i]["type"]=="C" or dates[i]["type"]=="D"):
+        if(dates[i]["type"]=="A" or dates[i]["type"]=="B" or dates[i]["type"]=="C" or dates[i]["type"]=="D"):
             break
 
     d = datetime.fromisoformat(dates[i]["date"])
 
-    #Sitzung 5 mal kopieren
-    for j in range(1,5):
+    #Sitzung 6 mal kopieren
+    for j in range(1,6):
         tmp_d = d + timedelta(days=7*j)
         print("Datum für Sitzung:", str(tmp_d)[:16])
         ny = input("bestätigen? y/n? ")
