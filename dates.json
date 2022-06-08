@@ -190,6 +190,26 @@
         "type": "A"
     },
     {
+        "date": "2022-07-06T19:30+02:00",
+        "title": "Hybridsitzung",
+        "type": "A"
+    },
+    {
+        "date": "2022-07-13T19:30+02:00",
+        "title": "Hybridsitzung",
+        "type": "A"
+    },
+    {
+        "date": "2022-07-20T19:30+02:00",
+        "title": "Hybridsitzung",
+        "type": "A"
+    },
+    {
+        "date": "2022-07-27T19:30+02:00",
+        "title": "Hybridsitzung",
+        "type": "A"
+    },
+    {
         "date": "2022-08-05T09:00+02:00",
         "title": "Animagic",
         "type": "V"
