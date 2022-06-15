@@ -8,21 +8,47 @@
         "theme": "Drama, Romance, Supernatural",
         "imurl": "https://cdn.myanimelist.net/images/anime/1804/95033l.jpg",
         "semes": "21W",
-        "progr": "20/23",
-        "vdate": "08.06.2022",
+        "progr": "21/23",
+        "vdate": "15.06.2022",
         "statu": "W"
     },
     {
-        "index": "104",
-        "malid": "45576",
-        "title": "Mushoku Tensei: Isekai Ittara Honki Dasu Part 2",
-        "titen": "Mushoku Tensei: Jobless Reincarnation Part 2",
-        "titjp": "\u7121\u8077\u8ee2\u751f \uff5e\u7570\u4e16\u754c\u884c\u3063\u305f\u3089\u672c\u6c17\u3060\u3059\uff5e \u7b2c2\u30af\u30fc\u30eb",
-        "theme": "Drama, Fantasy, Ecchi",
-        "imurl": "https://cdn.myanimelist.net/images/anime/1028/117777l.jpg",
+        "index": "107",
+        "malid": "50265",
+        "title": "Spy x Family",
+        "titen": "Spy x Family",
+        "titjp": "SPY\u00d7FAMILY",
+        "theme": "Action, Comedy",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1441/122795l.jpg",
         "semes": "22S",
-        "progr": "11/12",
-        "vdate": "08.06.2022",
+        "progr": "01/12",
+        "vdate": "15.06.2022",
+        "statu": "W"
+    },
+    {
+        "index": "108",
+        "malid": "47194",
+        "title": "Summertime Render",
+        "titen": "Summer Time Rendering",
+        "titjp": "\u30b5\u30de\u30fc\u30bf\u30a4\u30e0\u30ec\u30f3\u30c0",
+        "theme": "Mystery, Supernatural, Suspense",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1120/120796l.jpg",
+        "semes": "22S",
+        "progr": "01/25",
+        "vdate": "15.06.2022",
+        "statu": "W"
+    },
+    {
+        "index": "109",
+        "malid": "43608",
+        "title": "Kaguya-sama wa Kokurasetai: Ultra Romantic",
+        "titen": "Kaguya-sama: Love is War - Ultra Romantic",
+        "titjp": "\u304b\u3050\u3084\u69d8\u306f\u544a\u3089\u305b\u305f\u3044-\u30a6\u30eb\u30c8\u30e9\u30ed\u30de\u30f3\u30c6\u30a3\u30c3\u30af-",
+        "theme": "Comedy, Suspense",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1160/122627l.jpg",
+        "semes": "22S",
+        "progr": "00/13",
+        "vdate": "null",
         "statu": "W"
     },
     {
@@ -1352,6 +1378,19 @@
         "statu": "F"
     },
     {
+        "index": "104",
+        "malid": "45576",
+        "title": "Mushoku Tensei: Isekai Ittara Honki Dasu Part 2",
+        "titen": "Mushoku Tensei: Jobless Reincarnation Part 2",
+        "titjp": "\u7121\u8077\u8ee2\u751f \uff5e\u7570\u4e16\u754c\u884c\u3063\u305f\u3089\u672c\u6c17\u3060\u3059\uff5e \u7b2c2\u30af\u30fc\u30eb",
+        "theme": "Drama, Fantasy, Ecchi",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1028/117777l.jpg",
+        "semes": "22S",
+        "progr": "12/12",
+        "vdate": "22.06.2022",
+        "statu": "F"
+    },
+    {
         "index": "105",
         "malid": "48483",
         "title": "Mieruko-chan",
@@ -1376,5 +1415,18 @@
         "progr": "12/12",
         "vdate": "08.06.2022",
         "statu": "F"
+    },
+    {
+        "index": "110",
+        "malid": "41433",
+        "title": "Akudama Drive",
+        "titen": "Akudama Drive",
+        "titjp": "\u30a2\u30af\u30c0\u30de\u30c9\u30e9\u30a4\u30d6",
+        "theme": "Action, Sci-Fi",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1468/109172l.jpg",
+        "semes": "22S",
+        "progr": "00/12",
+        "vdate": "22.06.2022",
+        "statu": "D"
     }
 ]
