@@ -8,8 +8,8 @@
         "theme": "Drama, Romance, Supernatural",
         "imurl": "https://cdn.myanimelist.net/images/anime/1804/95033l.jpg",
         "semes": "21W",
-        "progr": "24/23",
-        "vdate": "06.07.2022",
+        "progr": "25/23",
+        "vdate": "13.07.2022",
         "statu": "F"
     },
     {
@@ -36,6 +36,19 @@
         "semes": "22S",
         "progr": "03/13",
         "vdate": "13.07.2022",
+        "statu": "W"
+    },
+    {
+        "index": "110",
+        "malid": "41433",
+        "title": "Akudama Drive",
+        "titen": "Akudama Drive",
+        "titjp": "\u30a2\u30af\u30c0\u30de\u30c9\u30e9\u30a4\u30d6",
+        "theme": "Action, Sci-Fi",
+        "imurl": "https://cdn.myanimelist.net/images/anime/1468/109172l.jpg",
+        "semes": "22S",
+        "progr": "01/12",
+        "vdate": "20.07.2022",
         "statu": "W"
     },
     {
@@ -1415,18 +1428,5 @@
         "progr": "12/12",
         "vdate": "08.06.2022",
         "statu": "F"
-    },
-    {
-        "index": "110",
-        "malid": "41433",
-        "title": "Akudama Drive",
-        "titen": "Akudama Drive",
-        "titjp": "\u30a2\u30af\u30c0\u30de\u30c9\u30e9\u30a4\u30d6",
-        "theme": "Action, Sci-Fi",
-        "imurl": "https://cdn.myanimelist.net/images/anime/1468/109172l.jpg",
-        "semes": "22S",
-        "progr": "02/12",
-        "vdate": "13.07.2022",
-        "statu": "W"
     }
 ]
